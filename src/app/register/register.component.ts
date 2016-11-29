@@ -12,6 +12,7 @@ import { SessionService }  from '../session.service';
 
 
 export class RegisterComponent implements OnInit {
+  loading : boolean = false;
   form = <MEMBER_DATA>{};
 
   constructor(
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
   loadUserData(){
     if(!this.session.login) return;
     //
-    console.log(this.session.login);
+    this.loading = true;
     this.member.data(userdata => {
 
       this.form.id = this.session.login.id;
@@ -59,11 +60,11 @@ export class RegisterComponent implements OnInit {
       this.form.email = userdata.user_email;
       this.form.mobile = userdata.user_mobile;
       this.form.user_varchar_1 = userdata.user_varchar_1;
-       console.log(userdata);
+      this.loading = false;
        
     }, error =>{
-
-
+      this.loading = false;
+      alert(error);
     })
   }
 
