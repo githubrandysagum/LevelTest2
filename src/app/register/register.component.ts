@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
        this.router.navigate([''])
        
     }, error=>{
-     console.log("Error"+ error);
+     alert("Server says" + error);
+     console.log("Server says" + error);
     })
 
   }
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
       this.member.update(this.form, response =>{
         console.log("Success Update", response);
       }, error =>{
-        console.error("Error", error)
+        alert("Server says" + error);
+        console.log("Server says" + error);
       })
 
   }
