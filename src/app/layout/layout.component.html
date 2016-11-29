@@ -1,0 +1,18 @@
+<header>
+  <h1>Philgo</h1>
+</header>
+<nav>
+  <a routerLink = "/">Home</a>
+  <a *ngIf="!session.login"  routerLink = "/login">Login</a>  
+  <a  *ngIf="session.login" (click)="onClickLogout()">Logout</a>  
+  <a *ngIf="!session.login" routerLink = "/register">Register</a>
+  <a *ngIf="session.login" routerLink = "/register">Update profile</a>  
+    
+</nav>
+<main>
+   <router-outlet></router-outlet>
+</main>
+
+<footer>
+  WithCenter, Inc
+</footer>
