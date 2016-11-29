@@ -13,6 +13,7 @@ import { SessionService }  from '../session.service';
 
 export class RegisterComponent implements OnInit {
   loading : boolean = false;
+  userAlert : string = "";
   form = <MEMBER_DATA>{};
 
   constructor(
@@ -30,13 +31,15 @@ export class RegisterComponent implements OnInit {
 
   onClickRegister(){
     
+    if(!this.validate(this.form)) return;
     this.member.register(this.form, login=>{
-       console.log(login);
+       this.session.login = login;
        this.router.navigate([''])
        
     }, error=>{
      alert("Server says" + error);
      console.log("Server says" + error);
+     this.userAlert = "Server says" + error;
     })
 
   }
@@ -68,6 +71,16 @@ export class RegisterComponent implements OnInit {
       this.loading = false;
       alert(error);
     })
+  }
+
+  validate(data : MEMBER_DATA){
+      if(data.id == "" || typeof(data.id) == "undefined") { this.userAlert = "Id is required"; return false; }
+      if(data.password == "" || typeof(data.password) == "undefined") { this.userAlert = "Password is required"; return false; }
+      if(data.email == "" || typeof(data.email) == "undefined") { this.userAlert = "Email is required"; return false; }
+      if(data.mobile == "" || typeof(data.mobile) == "undefined") { this.userAlert = "Mobile is required"; return false; }
+      if(data.name == "" || typeof(data.name) == "undefined") { this.userAlert = "Name is required"; return false; }
+      
+      this.userAlert = ""; return true;
   }
 
 
