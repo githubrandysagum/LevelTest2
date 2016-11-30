@@ -28,7 +28,7 @@ export class Api {
     }
 
     get serverUrl() : string {
-        return "http://philgo.com";
+        return "http://test.philgo.com/index.php";
     }
 
 

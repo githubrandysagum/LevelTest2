@@ -176,4 +176,12 @@ export class Post extends Api {
             */
     }
 
+
+    getForumList(){
+        this.http.get("http://philgo.com?module=ajax&submit=1&action=forums")
+        .subscribe(response =>{
+            console.log(JSON.parse(response["_body"]));
+        })
+    }
+
 }

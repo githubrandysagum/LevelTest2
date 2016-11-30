@@ -11,12 +11,14 @@ import { RegisterComponent } from './register/register.component';
 import { PhilgoApiModule } from './philgo-api/v2/philgo-api-module';
 import {SessionService} from './session.service';
 import { ForumCreateComponent } from './forum-create/forum-create.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 const links : Routes = [
   { path: '',component : HomeComponent },
   {  path : 'login', component : LoginComponent },
   {   path : 'register',   component : RegisterComponent },
-  { path : 'forum_create', component : ForumCreateComponent}
+  { path : 'forum_create', component : ForumCreateComponent},
+  { path : 'post_list', component : PostListComponent}
 ];
 
 @NgModule({
@@ -26,7 +28,8 @@ const links : Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ForumCreateComponent
+    ForumCreateComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ export class ForumCreateComponent implements OnInit {
 
   onClickCreatePost(){
      
+      this.form.post_id = "QnA";
+      this.form.category = "QnA";
+      this.form.sub_category = "QnA";
       this.post.create(this.form, post_response =>{
           console.log(post_response)
       }, error =>{

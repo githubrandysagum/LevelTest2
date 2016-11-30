@@ -1,5 +1,5 @@
 <label>Title</label>
-<input type="text" [(ngModel)]="form.varchar_1">
+<input type="text" [(ngModel)]="form.subject" class="form-control">
 <label>Message</label>
-<input type="text" [(ngModel)]="form.varchar_2">
-<button (click) = "onClickCreatePost()">Post</button>
+<input type="text" [(ngModel)]="form.content" class="form-control">
+<button (click) = "onClickCreatePost()" class="btn btn-primary">Post</button>
