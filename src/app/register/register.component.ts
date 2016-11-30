@@ -37,9 +37,9 @@ export class RegisterComponent implements OnInit {
        this.router.navigate([''])
        
     }, error=>{
-     alert("Server says" + error);
-     console.log("Server says" + error);
-     this.userAlert = "Server says" + error;
+    
+     console.log("Server says: " + error);
+     this.userAlert = "Philgo says: " + error;
     })
 
   }

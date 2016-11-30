@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
  validation_message_type = "";
   constructor(
     private member : MemberService,
-     private session : SessionService,
-      private router : Router
+    private session : SessionService,
+    private router : Router
      ) {
          this.session.login  = this.member.getLoginData();
       }
@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
     if( !this.validate( this.form )) return;
 
     this.member.login(this.form , login=>{
-      this.session.login = login;
+        this.session.login = login;
         this.router.navigate(['']);     
     }, er =>{
-      console.log("Error", er);
-      this.error(er);
+        console.log("Error", er);
+        this.error(er);
     })
   }
 

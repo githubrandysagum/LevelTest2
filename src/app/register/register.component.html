@@ -1,5 +1,7 @@
 
 <h4>Register</h4>
+<p *ngIf="loading">Loading data from server...</p>
+<p *ngIf = "userAlert" class="alert-warning">*{{userAlert}}!!!</p>
 <form *ngIf = "!loading">
 
   <div class="form-group">
@@ -36,5 +38,3 @@
   <button *ngIf = "session.login" (click)="onClickUpdate()" class="btn btn-primary">Update</button>
 
 </form>
-<p *ngIf="loading">Loading data from server...</p>
-<h3 *ngIf = "userAlert">*{{userAlert}}!!!</h3>
