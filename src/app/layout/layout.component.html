@@ -8,7 +8,7 @@
     <a class="nav-link" *ngIf="!session.login"  routerLink = "/login">Login</a>  
     <a class="nav-link" *ngIf="!session.login" routerLink = "/register">Register</a>
     <a class="nav-link" *ngIf="session.login" routerLink = "/register">Update profile</a> 
-    <a class="nav-link" *ngIf="session.login" routerLink = "/post_list">Forum</a>
+    <a class="nav-link" *ngIf="session.login" routerLink = "/forums">Forum</a>
     <a class="nav-link" *ngIf="session.login" (click)="onClickLogout()">Logout</a>     
   </nav>
   <main>
