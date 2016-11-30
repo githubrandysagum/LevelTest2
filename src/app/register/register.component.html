@@ -1,31 +1,40 @@
-<div *ngIf = "!loading">
-  <div>
-    <label>Id</label>
-    <input type = "text" [(ngModel)]="form.id">  
+
+<h4>Register</h4>
+<form *ngIf = "!loading">
+
+  <div class="form-group">
+    <label for="id">Id</label>
+    <input type = "text" [(ngModel)]="form.id" class="form-control" name="id" >  
   </div>
-  <div>
-    <label>Email</label>
-    <input type = "text" [(ngModel)]="form.email">  
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type = "text" [(ngModel)]="form.email" class="form-control" name="email">  
   </div>
-  <div *ngIf = "!session.login">
-    <label>Password</label>
-    <input type = "text" [(ngModel)]="form.password">  
-  </div>
-  <div>
-    <label>Name</label>
-    <input type = "text" [(ngModel)]="form.name">  
-  </div>
-  <div *ngIf = "!session.login">
-    <label>Nickname</label>
-    <input type = "text" [(ngModel)]="form.nickname">  
-  </div>
-  <div>
-    <label>Mobile</label>
-    <input type = "text" [(ngModel)]="form.mobile">  
+
+  <div *ngIf = "!session.login" class="form-group">
+    <label for="password">Password</label>
+    <input type = "text" [(ngModel)]="form.password" class="form-control" name="password">  
   </div>
   
-  <button *ngIf = "!session.login" (click)="onClickRegister()">Register</button>
-  <button *ngIf = "session.login" (click)="onClickUpdate()">Update</button>
-</div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type = "text" [(ngModel)]="form.name" class="form-control" name="name">  
+  </div>
+
+  <div *ngIf = "!session.login" class="form-group">
+    <label for="nickname">Nickname</label>
+    <input type = "text" [(ngModel)]="form.nickname" class="form-control" name="nickname">  
+  </div>
+
+  <div class="form-group">
+    <label for="mobile">Mobile</label>
+    <input type = "text" [(ngModel)]="form.mobile" class="form-control" name="mobile">  
+  </div>
+  
+  <button *ngIf = "!session.login" (click)="onClickRegister()" class="btn btn-primary">Register</button>
+  <button *ngIf = "session.login" (click)="onClickUpdate()" class="btn btn-primary">Update</button>
+
+</form>
 <p *ngIf="loading">Loading data from server...</p>
 <h3 *ngIf = "userAlert">*{{userAlert}}!!!</h3>

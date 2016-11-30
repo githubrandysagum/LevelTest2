@@ -1,9 +1,15 @@
-<div>
-  <label>Id</label>
-  <input type="text" [(ngModel)]="form.id" >
-</div>
-<div>
-  <label>password</label>
-  <input type="text" [(ngModel)]="form.password" >
-</div>
-<button (click) = "onClickLogin()">Login</button>
+
+<h2>Login</h2>
+<p [class]="validate_class" *ngIf = "validation_message"><strong>{{validation_message_type}}</strong> {{ validation_message }}</p>
+<form>
+  <div class="form-group">
+    <label for="id">Id</label>
+    <input type="text" [(ngModel)]="form.id" name="id" class="form-control" placeholder="user id">
+  </div>
+  <div class="form-group">
+    <label for="password">password</label>
+    <input type="text" [(ngModel)]="form.password" name="password" class="form-control" placeholder="user password">
+  </div>
+  <button class="btn btn-primary"  (click) = "onClickLogin()">Login</button>
+</form>
+

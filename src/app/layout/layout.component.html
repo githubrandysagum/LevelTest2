@@ -1,18 +1,20 @@
-<header>
-  <h1>Philgo</h1>
-</header>
-<nav>
-  <a routerLink = "/">Home</a>
-  <a *ngIf="!session.login"  routerLink = "/login">Login</a>  
-  <a  *ngIf="session.login" (click)="onClickLogout()">Logout</a>  
-  <a *ngIf="!session.login" routerLink = "/register">Register</a>
-  <a *ngIf="session.login" routerLink = "/register">Update profile</a>  
-    
-</nav>
-<main>
-   <router-outlet></router-outlet>
-</main>
+<div class="container-fluid">
+  <header>
+    <h1>Philgo</h1>
+  </header>
 
-<footer>
-  WithCenter, Inc
-</footer>
+  <nav class="nav nav-inline navbar-light bg-faded">
+    <a class="nav-link" routerLink = "/">Home</a>
+    <a class="nav-link" *ngIf="!session.login"  routerLink = "/login">Login</a>  
+    <a class="nav-link" *ngIf="!session.login" routerLink = "/register">Register</a>
+    <a class="nav-link" *ngIf="session.login" routerLink = "/register">Update profile</a> 
+    <a class="nav-link" *ngIf="session.login" routerLink = "/forum_create">Forum</a>
+    <a class="nav-link" *ngIf="session.login" (click)="onClickLogout()">Logout</a>     
+  </nav>
+  <main>
+    <div class="content routerOutlet">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+

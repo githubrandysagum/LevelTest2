@@ -6,15 +6,17 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.sass']
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  
   constructor(
     private session : SessionService,
     private member : MemberService,
     private router : Router
   
   ) { }
+  
   ngOnInit() {
   }
 

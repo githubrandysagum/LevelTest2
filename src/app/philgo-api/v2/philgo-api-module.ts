@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MemberService } from './member';
+import { Post } from './post';
 import { SampleHomePage } from '../sample-pages/home/home';
 import { SampleLoginPage } from '../sample-pages/login/login';
 import { SampleRegisterPage } from '../sample-pages/register/register';
 import { SamplePostPage } from '../sample-pages/post/post';
+
 
 export let ROUTES = [
         { path: "test/philgo/home", component: SampleHomePage, name: 'philgoHome' },
@@ -27,7 +29,7 @@ export let ROUTES = [
     RouterModule,
     FormsModule
   ],
-  providers : [ MemberService ]
+  providers : [ MemberService, Post ]
 })
 
 
