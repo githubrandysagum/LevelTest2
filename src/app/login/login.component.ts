@@ -14,18 +14,21 @@ export class LoginForm{
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
+
+
+
 export class LoginComponent implements OnInit {
  form = <LoginForm>{};
  validation_message : string = "";
  validate_class = "";
  validation_message_type = "";
+ 
+ 
   constructor(
     private member : MemberService,
     private session : SessionService,
     private router : Router
-     ) {
-         this.session.login  = this.member.getLoginData();
-      }
+  ) { this.session.login  = this.member.getLoginData(); }
 
   ngOnInit() {
   }
@@ -43,24 +46,26 @@ export class LoginComponent implements OnInit {
   }
 
 
-  validate( form : LoginForm) : boolean{
-    if(form.id == "" || typeof(form.id)=="undefined")
+  required(key : string, keyname : string){
+    if(key == "" || typeof(key)=="undefined")
     {
-      this.validation_message = "Username is required";
+      this.validation_message =  keyname + " is required";
       this.validate_class = "alert-warning";
       this.validation_message_type = "Warning!";
       return false;
     } 
-     if(form.password == "" || typeof(form.password)=="undefined")
-    {
-      this.validation_message = "Password is required";
-      this.validate_class = "alert-warning";
-      this.validation_message_type = "Warning!";
-      return false;
-    } 
+
       this.validation_message = "";
       this.validate_class = "";
       return true;
+  }
+
+
+  validate( form : LoginForm) : boolean{
+    if(!this.required(form.id, "Id")) return false;
+    if(!this.required(form.password, "Password")) return false;
+    return true;
+     
   }
 
     error(error : any){
