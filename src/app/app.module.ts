@@ -8,12 +8,12 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { PhilgoApiModule } from './philgo-api/v2/philgo-api-module';
-import {SessionService} from './session.service';
-import { PostListComponent } from './post-list/post-list.component';
-import { ForumsComponent } from './forums/forums.component';
+import { PhilgoApiModule } from './services/philgo-api/v2/philgo-api-module';
+import {SessionService} from './services/session.service';
+import { PostListComponent } from './forum/post-list/post-list.component';
+import { ForumsComponent } from './forum/forums/forums.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { PostCreateComponent } from './post-create/post-create.component';
+import { PostCreateComponent } from './forum/post-create/post-create.component';
 
 
 

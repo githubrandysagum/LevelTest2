@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Post } from '../philgo-api/v2/post';
+import {Post } from '../../services/philgo-api/v2/post';
 
-import { MemberService } from '../philgo-api/v2/member';
-import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../philgo-api/v2/philgo-api-interface';
-import { SessionService } from '../session.service';
+import { MemberService } from '../../services/philgo-api/v2/member';
+import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../../services/philgo-api/v2/philgo-api-interface';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.sass']
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
   postId : string;
@@ -22,7 +22,7 @@ export class PostListComponent implements OnInit {
     private router : Router
     ) {
           this.postId = localStorage.getItem('forums_postID'); 
-            this.loadPosts(this.postId);
+          this.loadPosts(this.postId);
      }
 
   ngOnInit() {

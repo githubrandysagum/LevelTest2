@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
-import { Post, POST_DATA} from '../philgo-api/v2/post';
+import { Post, POST_DATA} from '../../services/philgo-api/v2/post';
 
 @Component({
   selector: 'app-post-create',
