@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
   onClickUpdate(){
       this.member.update(this.form, response =>{
         console.log("Success Update", response);
+        alert('Update Success!')
       }, error =>{
         alert("Server says" + error);
         console.log("Server says" + error);
@@ -59,11 +60,11 @@ export class RegisterComponent implements OnInit {
     //
     this.loading = true;
     this.member.data(userdata => {
-
+      console.log(userdata);
       this.form.id = this.session.login.id;
       this.form.name = userdata.user_name;
-      this.form.email = userdata.user_email;
-      this.form.mobile = userdata.user_mobile;
+      this.form.email = userdata.email;
+      this.form.mobile = userdata.mobile;
       this.form.user_varchar_1 = userdata.user_varchar_1;
       this.loading = false;
        
