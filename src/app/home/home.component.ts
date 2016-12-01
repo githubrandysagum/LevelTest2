@@ -8,10 +8,9 @@ import { SessionService } from '../session.service';
 })
 export class HomeComponent implements OnInit {
 
-  login : MEMBER_LOGIN_DATA;
-  constructor(private member : MemberService, private session : SessionService) { 
-      this.session.login  = this.member.getLoginData();
-      console.log(this.session.login);
+  constructor(
+    private member : MemberService, 
+    private session : SessionService) { 
   }
 
   ngOnInit() {

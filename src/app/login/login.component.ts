@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private member : MemberService,
     private session : SessionService,
     private router : Router
-  ) { this.session.login  = this.member.getLoginData(); }
+  ) {  }
 
   ngOnInit() {
   }

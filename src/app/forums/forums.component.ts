@@ -42,21 +42,16 @@ export class ForumsComponent implements OnInit {
        let keyPair = {};
        let postIdData = [];
        for(let key in forums[name]){
-           postIdData.push(key);
+           postIdData.push(forums[name][key]);
         }     
-
         this.forums[name] = postIdData;
-
     }
-
-    
-
   }
   loadForums(){
     this.post.getForums( (forums ) =>{
          this.forums = forums;
          this.getForumNames(forums);
-         
+         console.log(forums);
        
     }, error =>{
         console.log(error)
@@ -65,6 +60,8 @@ export class ForumsComponent implements OnInit {
 
   onClickForum( post_id ) {
         console.log('onClickForum() post_id: ', post_id);
-        this.router.navigate(['/forums', post_id]);
+        this.router.navigate(['/forums/posts']);
+        localStorage.setItem('forums_postID', post_id);
+        localStorage.setItem('forums_postIDX', '');
     }
 }

@@ -13,6 +13,8 @@ import {SessionService} from './session.service';
 import { PostListComponent } from './post-list/post-list.component';
 import { ForumsComponent } from './forums/forums.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PostCreateComponent } from './post-create/post-create.component';
+
 
 
 const links : Routes = [
@@ -20,7 +22,9 @@ const links : Routes = [
   {  path : 'login', component : LoginComponent },
   {   path : 'register',   component : RegisterComponent },
   { path : 'forums', component : ForumsComponent},
-  { path : 'forums/:id', component : PostListComponent}
+  { path : 'forums/posts', component : PostListComponent},
+  { path : 'forums/post', component : PostCreateComponent},
+  { path : 'forums/post', component : PostCreateComponent},
 ];
 
 @NgModule({
@@ -31,7 +35,9 @@ const links : Routes = [
     LoginComponent,
     RegisterComponent,
     PostListComponent,
-    ForumsComponent
+    ForumsComponent,
+    PostCreateComponent,
+    
   ],
   imports: [
     BrowserModule,

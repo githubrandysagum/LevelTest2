@@ -1,0 +1,10 @@
+
+<h2 *ngIf="!postIDX">Post</h2>
+<h2 *ngIf="postIDX">Post Update</h2>
+<label>Title</label>
+<input type = 'text' [(ngModel)] = "form.subject" class="form-control">
+<label>Message</label>
+<input type ="text" [(ngModel)]="form.content" class="form-control">
+<button *ngIf="!postIDX" (click)="onClickCreate()">Post</button>
+<button *ngIf="postIDX" (click)="onClickSaveChanges()">Save Changes</button>
+<button (click)="onClickBack()">Go back</button>
