@@ -40,7 +40,10 @@ constructor(
   }
 
   onClickSaveUpdate(){
-    this.updateComment(this.updateIdx,this.comment);
+    this.updateComment(this.updateIdx,this.comment, ()=>{
+      this.updateIdx = "";
+      this.comment = "";
+    });
     this.focus = true;
   }
   onClickCancelUpdate(){
@@ -62,7 +65,7 @@ constructor(
   }
 
  
-  updateComment( idx, data) {
+  updateComment( idx, data, success) {
         console.log("updateComment()");
         let c = <POST_DATA> {};
         c.idx = idx;
@@ -70,6 +73,7 @@ constructor(
         c.content = data;
         this.post.update( c, data => {
             this.loadPosts(this.postId);
+            success();
         }, error => {
             console.error("comment update error: " + error );
             alert( error );
@@ -99,7 +103,7 @@ constructor(
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
-      alert('modal Close');
+     
     }, (reason) => {
       alert('Error modal close'+ reason);
     });
@@ -107,9 +111,9 @@ constructor(
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+       return 'by clicking on a backdrop';
     } else {
       return  `with: ${reason}`;
     }
