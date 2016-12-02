@@ -14,6 +14,7 @@ import { PostListComponent } from './forum/post-list/post-list.component';
 import { ForumsComponent } from './forum/forums/forums.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PostCreateComponent } from './forum/post-create/post-create.component';
+import { CommentComponent } from './forum/comment/comment.component';
 
 
 
@@ -37,6 +38,7 @@ const links : Routes = [
     PostListComponent,
     ForumsComponent,
     PostCreateComponent,
+    CommentComponent,
     
   ],
   imports: [
@@ -48,6 +50,7 @@ const links : Routes = [
     NgbModule.forRoot()
   ],
   providers: [SessionService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

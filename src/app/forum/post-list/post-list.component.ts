@@ -12,6 +12,7 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
+  showComments = "";
   postId : string;
   posts =  <POSTS>{};
   isEdit = "";
@@ -20,6 +21,7 @@ export class PostListComponent implements OnInit {
     private member : MemberService,
     private route : ActivatedRoute,
     private router : Router
+   
     ) {
           this.postId = localStorage.getItem('forums_postID'); 
           this.loadPosts(this.postId);
@@ -27,6 +29,8 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
   onClickAddPost(){
     this.router.navigate(['/forums/post']);
@@ -51,10 +55,19 @@ export class PostListComponent implements OnInit {
      }
   }
 
+  onClickAddComment($event){
+    console.log("From Post Parent Add Comment result: ",$event);
+    this.showComments = $event;
+    this.loadPosts(this.postId);
+  }
+
+  
+
   edit(idx){
     if(this.isEdit == idx) return "hasvalue"; 
     return "";
   }
+
 
   loadPosts(postID : string){
     let data = <PAGE_DATA>{
@@ -64,12 +77,18 @@ export class PostListComponent implements OnInit {
     };
      this.post.page(data, response =>{
         this.posts = response;
+
+        console.log("Post structured",this.posts);
       
      }, error =>{
         console.log(error);
      });
 
   }
+
+
+  
+
 
 
 }
