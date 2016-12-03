@@ -14,38 +14,45 @@ import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 })
 
 export class CommentComponent implements OnInit {
-  idx;
-  comments : Array<any>;
-  commentsdisplay = [];
-  show = "";
-  updateIdx = "";
-  onAdd = new EventEmitter();
-  focus =false;
-  comment = "";
-  postId = "";
-constructor( 
+    idx;
+    comments : Array<any>;
+    commentsdisplay = [];
+    show = "";
+    updateIdx = "";
+    onAdd = new EventEmitter();
+    focus =false;
+    comment = "";
+    postId = "";
+  
+  constructor( 
     private modalService: NgbModal,
     private post : Post
-     ) { 
+  ) { }
 
-     }
+  ngOnInit() { 
 
-  ngOnInit() {
-      
   }
-  
+
+  onClickToggleComment(){
+      
+      if(this.show == "" ){ this.show = "show"; }
+      else{ this.show = ""; }
+  }
+
   onClickUpdateComment(idx, data){
       this.updateIdx = idx;
       this.comment = data;
   }
 
   onClickSaveUpdate(){
-    this.updateComment(this.updateIdx,this.comment, ()=>{
+    this.updateComment(this.updateIdx, this.comment, ()=>{
       this.updateIdx = "";
       this.comment = "";
     });
     this.focus = true;
   }
+
+
   onClickCancelUpdate(){
     this.updateIdx = "";
       this.comment = "";
@@ -53,7 +60,7 @@ constructor(
 
   onClickDelete(idx){
     this.post.delete(idx, response=>{
-        this.loadPosts(this.postId);
+        this.refreshComments(this.postId, this.idx);
     }, error=>{
         alert("Delete comment error: " +error);
     })
@@ -64,82 +71,74 @@ constructor(
     this.createComment(this.idx, this.comment);
   }
 
+   open(content) {
+        this.modalService.open(content).result.then((result) => {
+      }, (reason) => {
+        alert('Error modal close'+ reason);
+      });
+    }
+
+   private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+
  
-  updateComment( idx, data, success) {
+   private updateComment( idx, data, success) {
         console.log("updateComment()");
         let c = <POST_DATA> {};
         c.idx = idx;
-        c.subject = "edited comment subject";
+        c.subject = "Subject";
         c.content = data;
         this.post.update( c, data => {
-            this.loadPosts(this.postId);
-            success();
+            this.refreshComments(this.postId, this.idx);
+            success(data);
         }, error => {
-            console.error("comment update error: " + error );
-            alert( error );
+            console.error("Comment update error: " + error );
+            alert("There is an error on updating your comment! Philgo says:" + error );
         })
     }
 
-  createComment( idx_parent, data ) {
+    private createComment( idx_parent, data ) {
         console.log("createComment()");
         let c = <POST_DATA> {};
         c.idx_parent = idx_parent;
         c.subject = "Comment title";
         c.content = data;
     
-      
         this.post.createComment( c, data => {              
-            this.loadPosts(this.postId);
+            this.refreshComments(this.postId, this.idx);
         }, error => {
+            alert("An error occured on submitting your comment! Philgo says:" + error)
             console.error("create comment error: " + error );     
         } );
     }
 
-    onClickToggleComment(){
-      
-    if(this.show == "" ){ this.show = "show"; }
-    else{ this.show = ""; }
-  }
+    private refreshComments(postID : string, idx : string){
+      let data = <PAGE_DATA>{
+          post_id:  postID , 
+          page_no: 1,
+          limit: 10
+      };
+      this.post.page(data, response =>{
+          
+          for(let key in response.posts){
+              if(response.posts[key].idx == idx){
+                console.log("Result",response.posts[key].comments)
+                this.comments = response.posts[key].comments;
+                return;
+              }
+          }
 
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-     
-    }, (reason) => {
-      alert('Error modal close'+ reason);
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-       return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-       return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
+      }, error =>{
+          console.log("Error refreshing comments",error);
+      });
     }
-  }
-
-
-  loadPosts(postID : string){
-    let data = <PAGE_DATA>{
-        post_id:  postID , 
-        page_no: 1,
-        limit: 10
-    };
-     this.post.page(data, response =>{
-        
-        for(let key in response.posts){
-            if(response.posts[key].idx == this.idx){
-              console.log("Result",response.posts[key].comments)
-              this.comments = response.posts[key].comments;
-              return;
-            }
-        }
-     }, error =>{
-        console.log(error);
-     });
-
-  }
   
 
 

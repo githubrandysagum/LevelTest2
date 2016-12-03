@@ -48,9 +48,6 @@ export class PostCreateComponent implements OnInit {
 
   }
 
-   
-
-
   onClickSaveChanges(){
      this.post.update(this.form, response=>{
          console.log("Successful update: ",response);

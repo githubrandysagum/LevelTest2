@@ -1,11 +1,11 @@
 
-<h4>Forums Category List</h4>
-<ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="{{forum_names[0]}}">
+ <h4>Forum Categories</h4>
+ <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="{{forum_names[0]}}">
     <ngb-panel id="{{name}}" title="{{name}}" *ngFor=" let name of forum_names ">
       <template ngbPanelContent>
-      <div *ngFor=" let post_id of forums[ name ]" (click)="onClickForum( post_id )">
-              {{  post_id  }}
-      </div>
+        <div *ngFor=" let post_id of forums[ name ]" (click)="onClickForum( post_id )">
+                {{  post_id  }}
+        </div>
       </template>
     </ngb-panel>
  </ngb-accordion>

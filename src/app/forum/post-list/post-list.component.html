@@ -1,20 +1,29 @@
 
-
 <div>
   <h2>FORUM TOPIC</h2>
     <button (click)="onClickAddPost()">Add Post</button>    
 </div>
 
-<div *ngFor = "let post of posts.posts">     
-      <div class="form-group">
-          <h4> <img src="/assets/user.png" user-img  alt = "image" > </h4>    
-          <p>{{ post.content }}</p>    
-          <a>Like</a>      
-          <button (click) =  "onClickEdit(post.idx)">Edit Post</button> 
-          <button (click) =  "onClickDeletePost(post.idx)">Delete Post</button>           
-      </div>    
-    
-      <app-comment [postId] = "postId" [comments]= "post.comments" [show]="showComments" [idx] = "post.idx" (onAdd)="onClickAddComment($event)" ></app-comment> 
-      <hr>
+<div *ngFor = "let post of posts.posts" class="card">  
+    <div class="card-header">
+       <img src="/assets/user.png" user-img  alt = "image" > Username
+    </div>   
+    <div class="card-block">
+        <h4 class="card-title">{{ post.subject}}</h4>    
+        <p class="card-text">{{ post.content }}</p> 
+    </div>  
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">  Likes 2  Comments </li>
+            <li class="list-group-item">
+                <a>Like</a> 
+                <app-comment [postId] = "postId" [comments]= "post.comments" [show]="showComments" [idx] = "post.idx" (onAdd)="onClickAddComment($event)" ></app-comment>    
+            </li>
+            <li class="list-group-item">
+                <button (click) =  "onClickEdit(post.idx)">Edit Post</button> 
+                <button (click) =  "onClickDeletePost(post.idx)">Delete Post</button> 
+            </li>
+        </ul>
+    </div>                    
 </div>
 

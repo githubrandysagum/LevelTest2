@@ -34,12 +34,10 @@ export class RegisterComponent implements OnInit {
     if(!this.validate(this.form)) return;
     this.member.register(this.form, login=>{
        this.session.login = login;
-       this.router.navigate([''])
-       
-    }, error=>{
-    
-     console.log("Server says: " + error);
-     this.userAlert = "Philgo says: " + error;
+       this.router.navigate(['']);   
+    }, error=>{ 
+      console.log("Server says: " + error);
+      this.userAlert = "Philgo says: " + error;      
     })
 
   }
