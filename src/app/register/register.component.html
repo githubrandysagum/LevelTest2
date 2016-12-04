@@ -1,5 +1,7 @@
 
-<h4>Register</h4>
+<h4 *ngIf = "!session.login">Register</h4>
+<h4 *ngIf = "session.login">Profile</h4>
+
 <p *ngIf="loading">Loading data from server...</p>
 <p *ngIf = "userAlert" class="alert-warning">*{{userAlert}}!!!</p>
 <form *ngIf = "!loading">

@@ -5,6 +5,8 @@ import {Post } from '../../services/philgo-api/v2/post';
 import { MemberService } from '../../services/philgo-api/v2/member';
 import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../../services/philgo-api/v2/philgo-api-interface';
 import { SessionService } from '../../services/session.service';
+import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
+
 
 @Component({
   selector: 'app-post-list',
@@ -86,9 +88,10 @@ export class PostListComponent implements OnInit {
 
   }
 
+  onClickViewPost(postidx){
 
-  
-
-
+      localStorage.setItem('forums_postIDX', postidx);
+      this.router.navigate(['/forums/postview'])
+  }
 
 }

@@ -4,36 +4,26 @@
 
 <template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" >
-      <span aria-hidden="true">&times;</span>
-    </button>
     <h4 class="modal-title">Comments</h4>
   </div>
-  <div class="modal-body">
-    
+  <div class="modal-body">        
     <a (click)="onClickToggleComment()">Comment</a> 
         <div class="form-group">
             <ul class="list-group" *ngIf="comments">   
                 <li class="list-group-item" *ngFor="let comment of comments">
                     <div (click) = "onClickUpdateComment(comment.idx, comment.content)">
                         <img src="/assets/user.png" user-img  alt = "image" >
-                        <div [innerHTML]=" comment.content "></div>
+                        <div [innerHTML] = "comment.content"></div>
                     </div>
                     <button (click)="onClickDelete(comment.idx)">delete</button>
                 </li>
             </ul>                                     
         </div>
-
-     
-
         <input type="text" class="form-control" [(ngModel)]="comment" placeholder=" write comment...">  
         <button  *ngIf = "!updateIdx" (click)="onClickCreate()">Add</button>
         <button  *ngIf = "updateIdx"  (click)="onClickSaveUpdate()">Save</button>
         <button  *ngIf = "updateIdx"  (click)="onClickCancelUpdate()">Cancel</button>
-  </div>
-
-
-  
+  </div> 
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>

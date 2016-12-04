@@ -1,6 +1,7 @@
 import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
+import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
 
 
 
@@ -96,6 +97,7 @@ export class CommentComponent implements OnInit {
         c.subject = "Subject";
         c.content = data;
         this.post.update( c, data => {
+            
             this.refreshComments(this.postId, this.idx);
             success(data);
         }, error => {
@@ -126,7 +128,7 @@ export class CommentComponent implements OnInit {
           limit: 10
       };
       this.post.page(data, response =>{
-          
+          this.comment = "";
           for(let key in response.posts){
               if(response.posts[key].idx == idx){
                 console.log("Result",response.posts[key].comments)
@@ -139,6 +141,9 @@ export class CommentComponent implements OnInit {
           console.log("Error refreshing comments",error);
       });
     }
+
+
+     
   
 
 

@@ -15,17 +15,20 @@ import { ForumsComponent } from './forum/forums/forums.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PostCreateComponent } from './forum/post-create/post-create.component';
 import { CommentComponent } from './forum/comment/comment.component';
+import { HTMLCHARPipe } from './pipes/htmlchar.pipe';
+import { PostViewComponent } from './forum/post-view/post-view.component';
 
 
 
 const links : Routes = [
   { path: '',component : HomeComponent },
-  {  path : 'login', component : LoginComponent },
-  {   path : 'register',   component : RegisterComponent },
+  { path : 'login', component : LoginComponent },
+  { path : 'register',   component : RegisterComponent },
   { path : 'forums', component : ForumsComponent},
   { path : 'forums/posts', component : PostListComponent},
   { path : 'forums/post', component : PostCreateComponent},
   { path : 'forums/post', component : PostCreateComponent},
+  { path : 'forums/postview', component : PostViewComponent},
 ];
 
 @NgModule({
@@ -39,6 +42,8 @@ const links : Routes = [
     ForumsComponent,
     PostCreateComponent,
     CommentComponent,
+    HTMLCHARPipe,
+    PostViewComponent,
     
   ],
   imports: [
