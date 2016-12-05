@@ -20,9 +20,9 @@ export class SessionService {
       if(!this.login) this.router.navigate(['']);
   }
 
-  setBackRoute(route){   
-    this.backRoute = route ;
-    localStorage.setItem('backRoute', route);
+  setBackRoute(_route){   
+    this.backRoute = _route ;
+    localStorage.setItem('backRoute', _route);
   }
 
   

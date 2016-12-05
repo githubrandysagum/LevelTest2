@@ -16,6 +16,7 @@ export class PostViewComponent implements OnInit {
   posts : any;
   postId : string;
   postIdx : string;
+  message : "";
   constructor(
     private postservice : Post,
     private session : SessionService,
@@ -28,6 +29,9 @@ export class PostViewComponent implements OnInit {
     this.getIDs();
   }
 
+  onEditEvent($event){
+    this.loadPosts(this.postId, this.postIdx);
+  }
 
   getIDs(){
     this.postId = localStorage.getItem('forums_postID');
@@ -46,6 +50,39 @@ export class PostViewComponent implements OnInit {
         this.router.navigate(['forums/posts']);
     }, e =>{
         alert('Error on deleting:'+ e);
+    })
+  }
+
+  onClickAddComment( ){
+    
+        console.log("createComment()");
+        let c = <POST_DATA> {};
+        c.idx_parent = this.postIdx;
+        c.subject = "Comment title";
+        c.content = this.message;
+    
+        this.postservice.createComment( c, data => {     
+            this.message = "";         
+            this.loadPosts(this.postId, this.postIdx);
+        }, error => {
+            alert("An error occured on submitting your comment! Philgo says:" + error)
+            console.error("create comment error: " + error );     
+        } );
+    }
+
+
+
+  onClickEditComment(){
+    // this.router.navigate(['/forums/post']);
+    // this.session.setBackRoute('forums/postview');
+  }
+
+  onClickDeleteComment(idx){
+
+    this.postservice.delete(idx, reponse=>{
+       this.loadPosts(this.postId, this.postIdx);
+    }, e =>{
+        alert('Error on deleting comment:'+ e);
     })
   }
 

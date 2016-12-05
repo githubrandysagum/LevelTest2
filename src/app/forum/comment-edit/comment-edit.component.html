@@ -1,0 +1,23 @@
+
+
+
+
+<template #commentEdit let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Comments</h4>
+  </div>
+  <div class="modal-body">        
+    
+             
+            <input type="text" class="form-control" [(ngModel)]="comment" placeholder=" write comment...">  
+           
+  </div> 
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('save')">Save Changes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('close')">Close</button>
+  </div>
+</template>
+
+
+
+<button class=" btn btn-default btn-xs" (click)="open(commentEdit)">Edit</button>

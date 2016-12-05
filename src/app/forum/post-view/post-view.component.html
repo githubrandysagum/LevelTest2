@@ -24,10 +24,20 @@
 
 <ul class="list-group" *ngIf="post.comments">   
     <li class="list-group-item" *ngFor="let comment of post.comments">
-        <div (click) = "onClickUpdateComment(comment.idx, comment.content)">
+        <div *ngIf = "comment">
             <img src="/assets/user.png" user-img  alt = "image" >
             <div>{{comment.content}}</div>
+            <!--<button class="btn btn-default" (click)="onClickEditComment()">Edit Comment</button>-->
+            <app-comment-edit (edited) = "onEditEvent($event)" [idx] = "comment.idx" [comment] = "comment.content" [postIdx] = "post.idx"></app-comment-edit>
+            <button class="btn btn-default" (click)="onClickDeleteComment(comment.idx)">Delete</button> 
+            
         </div>
     </li>
- </ul>    
+ </ul> 
+<div class="card">
+    <div class="card-block">
+            <input type="text" class="form-control" [(ngModel)]="message" placeholder=" write comment...">  
+             <button  (click)="onClickAddComment()">Add</button>   
+     </div>
+</div>  
 

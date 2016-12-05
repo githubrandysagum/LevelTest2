@@ -2,7 +2,7 @@
   <template ngbModalContainer></template>
   <br>
   <div class="container" >
-    <h2 ><a *ngIf="session.backRoute" (click) = "onClickBackArrow()" >&larr;</a><strong class="text-primary">LOGO</strong>  Philgo </h2> 
+    <h2 ><strong *ngIf="session.backRoute" (click) = "onClickBackArrow()" >&larr;</strong><strong class="text-primary">LOGO</strong>  Philgo </h2> 
   </div>
   <nav class="navbar  navbar-dark bg-primary ">
     <div class="container">
@@ -21,7 +21,7 @@
               <a class="nav-item nav-link" *ngIf="!session.login" routerLink = "/register">Register</a> 
               <a class="nav-item nav-link" *ngIf="session.login" routerLink = "/register">Profile</a> 
               <a class="nav-item nav-link" *ngIf="session.login" routerLink = "/forums">Forum</a>   
-              <a class="nav-item nav-link"  (click)="onClickLogout()">Logout</a>                 
+              <a class="nav-item nav-link" *ngIf="session.login" (click)="onClickLogout()">Logout</a>                 
           </div>
         </div>
   </nav>

@@ -9,12 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PhilgoApiModule } from './services/philgo-api/v2/philgo-api-module';
-import {SessionService} from './services/session.service';
+import { SessionService} from './services/session.service';
 import { PostListComponent } from './forum/post-list/post-list.component';
 import { ForumsComponent } from './forum/forums/forums.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PostCreateComponent } from './forum/post-create/post-create.component';
 import { CommentComponent } from './forum/comment/comment.component';
+import { CommentEditComponent } from './forum/comment-edit/comment-edit.component';
 import { HTMLCHARPipe } from './pipes/htmlchar.pipe';
 import { PostViewComponent } from './forum/post-view/post-view.component';
 
@@ -42,6 +43,7 @@ const links : Routes = [
     ForumsComponent,
     PostCreateComponent,
     CommentComponent,
+    CommentEditComponent,
     HTMLCHARPipe,
     PostViewComponent,
     
