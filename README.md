@@ -43,7 +43,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 * Use Login link to login on your existing account
 * If no account or not registered used Register link for registration
 * Forums will show list of ID for each list category
-    >> Clicking specific category will app will show list of post.
+    >> Clicking specific category will shown a list of posts.
     >> For each post you can able to click comment link to show all list of comments in a specific Post in modal.
     >> To view a specific Post details only, click the header of the post.
     >> Under Post View you can able to Update, Delete and  or even CRUD comment.
