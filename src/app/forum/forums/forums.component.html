@@ -3,9 +3,9 @@
  <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" >
     <ngb-panel id="{{name}}" title="{{name}}" *ngFor=" let name of forum_names ">
       <template ngbPanelContent>
-        <ul class="list-group" *ngFor=" let post_id of forums[ name ]" (click)="onClickForum( post_id )">
-            <li class="list-group-item">{{post_id}}</li>
-        </ul>
+        <div  *ngFor=" let post_id of forums[ name ]" (click)="onClickForum( post_id )">
+            <span>{{post_id}}</span><hr>
+        </div>
       </template>
     </ngb-panel>
  </ngb-accordion>

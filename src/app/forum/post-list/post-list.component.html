@@ -1,31 +1,35 @@
 
-<h2 class="text-primary">{{postId}}</h2>
+<h2 class="text-primary">{{postId | HTMLCHAR }}</h2>
+<button class="btn btn-default" (click)="onClickAddPost()">Add Post</button>
 
-<div class="container">
-    <button class="btn btn-default" (click)="onClickAddPost()">Add Post</button>
-<div>
-
-<div class="card" *ngFor = "let post of posts.posts"  style="background-color:#DFEAED;">  
-    <div class="card-header" (click)="onClickViewPost(post.idx)">
-       <img src="/assets/user.png" user-img  alt = "image" > {{ post.member.name}}
-    </div>   
-    <div class="card-block">
-        <strong class="card-title" >{{post.subject}}</strong><br>  
-        <span class="card-text" [innerHTML] ="post.content" ></span> 
-    </div>  
+<div *ngFor = "let post of posts.posts" >  
     <div class="card">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <a>Like</a> 
-                <app-comment [postId] = "postId" 
-                             [comments]= "post.comments" 
-                             [show]="showComments" 
-                             [idx] = "post.idx" 
-                             (onAdd)="onClickAddComment($event)" >
-                </app-comment>    
-                {{ post.no_of_comment}}
-            </li>
-        </ul>
-    </div>          
+        <div class="card-header" (click)="onClickViewPost(post.idx)">
+         <img src="/assets/user.png" user-img  alt = "image" > 
+         {{ post.member.name | HTMLCHAR}}
+        </div>   
+
+        <div class="card-block">
+            <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
+            <p class="card-text" > {{ post.content | HTMLCHAR}}</p> 
+        </div>  
+
+        <div class="card">
+            <ul class="list-group">
+             <li class="list-group-item">        
+                    <a>Like</a> 
+                    <app-comment [postId] = "postId" 
+                                [comments]= "post.comments" 
+                                [show]="showComments" 
+                                [idx] = "post.idx" 
+                                (onAdd)="onClickAddComment($event)" >
+                    </app-comment>    
+                    {{ post.no_of_comment}} 
+              </li> 
+             </ul>          
+        </div>  
+    </div>
+    <br>
 </div>
+
 

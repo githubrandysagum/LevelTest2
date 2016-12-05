@@ -6,6 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class HTMLCHARPipe implements PipeTransform {
 
   transform(value: string): string {
+
+    if(typeof(value) == "undefine" || value == null) return " ";
      var map = {
           '&': '&amp;',
           '<': '&lt;',
@@ -14,7 +16,7 @@ export class HTMLCHARPipe implements PipeTransform {
           "'": '&#039;'
         };
 
-        return value.replace(/[&<>"']/g, function(m) { return map[m]; });
+        return value.replace(/[&<>"']/g, function(m) { return " " + map[m] + " "; });
   }
 
 }

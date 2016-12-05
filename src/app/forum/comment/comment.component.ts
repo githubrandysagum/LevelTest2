@@ -24,6 +24,7 @@ export class CommentComponent implements OnInit {
     focus =false;
     comment = "";
     postId = "";
+    deleting = "";
   
   constructor( 
     private modalService: NgbModal,
@@ -60,8 +61,10 @@ export class CommentComponent implements OnInit {
   }
 
   onClickDelete(idx){
+      this.deleting = "true";
     this.post.delete(idx, response=>{
         this.refreshComments(this.postId, this.idx);
+        this.deleting = "";
     }, error=>{
         alert("Delete comment error: " +error);
     })

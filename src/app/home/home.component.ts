@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private member : MemberService, 
     private session : SessionService) { 
+      this.session.setBackRoute('');
   }
 
   ngOnInit() {

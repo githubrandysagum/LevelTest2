@@ -22,9 +22,10 @@ export class PostListComponent implements OnInit {
     private post: Post,
     private member : MemberService,
     private route : ActivatedRoute,
-    private router : Router
-   
+    private router : Router,
+    private session : SessionService
     ) {
+          this.session.setBackRoute("forums/");
           this.postId = localStorage.getItem('forums_postID'); 
           this.loadPosts(this.postId);
      }
@@ -89,7 +90,6 @@ export class PostListComponent implements OnInit {
   }
 
   onClickViewPost(postidx){
-
       localStorage.setItem('forums_postIDX', postidx);
       this.router.navigate(['/forums/postview'])
   }

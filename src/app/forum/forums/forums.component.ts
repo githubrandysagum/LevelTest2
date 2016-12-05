@@ -22,6 +22,7 @@ export class ForumsComponent implements OnInit {
     private router : Router
     ) { 
       this.checkLogged();
+      this.session.setBackRoute('');
     }
 
   ngOnInit() {
@@ -61,6 +62,7 @@ export class ForumsComponent implements OnInit {
   onClickForum( post_id ) {
         console.log('onClickForum() post_id: ', post_id);
         this.router.navigate(['/forums/posts']);
+        this.session.backRoute = '/forums';
         localStorage.setItem('forums_postID', post_id);
         localStorage.setItem('forums_postIDX', '');
     }

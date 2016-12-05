@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
     private session : SessionService
      ) {
     console.log("RegisterComponent  :: Construct()");
+        this.session.setBackRoute('');
         this.session.login  = this.member.getLoginData();
         this.loadUserData();
    }

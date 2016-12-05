@@ -15,9 +15,13 @@ export class LayoutComponent implements OnInit {
     private member : MemberService,
     private router : Router
   
-  ) { }
+  ) { 
+
+
+  }
   
   ngOnInit() {
+    this.session.setBackRoute(localStorage.getItem('backRoute'));
   }
 
   onClickLogout(){
@@ -26,5 +30,9 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  onClickBackArrow(){
+
+    this.router.navigate([this.session.backRoute]);
+  }
 
 }

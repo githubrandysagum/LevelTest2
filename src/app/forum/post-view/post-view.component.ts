@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
+import { SessionService } from '../../services/session.service';
 
 
 
@@ -15,9 +16,11 @@ export class PostViewComponent implements OnInit {
   postId : string;
   postIdx : string;
   constructor(
-    private postservice : Post
+    private postservice : Post,
+    private session : SessionService
   ) {
       
+       this.session.setBackRoute("forums/posts");
    }
 
   ngOnInit() {

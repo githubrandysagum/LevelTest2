@@ -5,16 +5,13 @@
     </div>   
     <div class="card-block">
         <strong class="card-title" >{{post.subject}}</strong><br>  
-        <span class="card-text" [innerHTML] ="post.content" ></span> 
+        <span class="card-text" >{{post.content}}</span> 
     </div>  
     <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <a>Like</a>   
                 <a>Comments {{ post.no_of_comment}}</a>
-            </li>
-            <li>
-                
             </li>
         </ul>
     </div>        
@@ -24,7 +21,7 @@
     <li class="list-group-item" *ngFor="let comment of post.comments">
         <div (click) = "onClickUpdateComment(comment.idx, comment.content)">
             <img src="/assets/user.png" user-img  alt = "image" >
-            <div [innerHTML] = "comment.content"></div>
+            <div>{{comment.content}}</div>
         </div>
     </li>
  </ul>    

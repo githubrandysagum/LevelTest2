@@ -1,12 +1,10 @@
   
   <template ngbModalContainer></template>
   <br>
-  <div class="container">
-    <h2><a>&larr;</a><strong class="text-primary">LOGO</strong>  Philgo Forum</h2> 
+  <div class="container" >
+    <h2 ><a *ngIf="session.backRoute" (click) = "onClickBackArrow()" >&larr;</a><strong class="text-primary">LOGO</strong>  Philgo </h2> 
   </div>
-
   <nav class="navbar  navbar-dark bg-primary ">
-    
     <div class="container">
         <button class="navbar-toggler hidden-lg-up"
                   type="button" 
@@ -27,7 +25,6 @@
           </div>
         </div>
   </nav>
-
   <div class="container">
       <main style="padding-top:20px;">
         <div class="content routerOutlet">

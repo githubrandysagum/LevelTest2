@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 @Injectable()
 export class SessionService {
   login : any;
-  backRoute : string;
   constructor(
     private member : MemberService,
     private router : Router
@@ -19,11 +18,4 @@ export class SessionService {
     console.log("SessionService checkLogin()::")
       if(!this.login) this.router.navigate(['']);
   }
-
-  setBackRoute(route){   
-    this.backRoute = route ;
-    localStorage.setItem('backRoute', route);
-  }
-
-  
 }

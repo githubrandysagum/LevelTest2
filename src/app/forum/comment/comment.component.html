@@ -13,8 +13,8 @@
                 <li class="list-group-item" *ngFor="let comment of comments">
                     <div (click) = "onClickUpdateComment(comment.idx, comment.content)">
                         <img src="/assets/user.png" user-img  alt = "image" >
-                        <div [innerHTML] = "comment.content"></div>
-                    </div>
+                        <div>{{comment.content}}</div>
+                    </div>                 
                     <button (click)="onClickDelete(comment.idx)">delete</button>
                 </li>
             </ul>                                     
