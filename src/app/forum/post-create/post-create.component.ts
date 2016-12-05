@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
 import { Post, POST_DATA} from '../../services/philgo-api/v2/post';
+import { SessionService } from '../../services/session.service';
+
 
 @Component({
   selector: 'app-post-create',
@@ -14,7 +16,8 @@ export class PostCreateComponent implements OnInit {
   constructor( 
     private route : ActivatedRoute,
     private post : Post,
-    private router : Router
+    private router : Router,
+    private session : SessionService
      ) {
        this.postID = localStorage.getItem('forums_postID');
        this.postIDX = localStorage.getItem('forums_postIDX');
@@ -41,7 +44,7 @@ export class PostCreateComponent implements OnInit {
       this.form.post_id = this.postID;
       this.post.create(this.form, response =>{
           console.log("Success Post", response);
-          this.router.navigate(['/forums/posts']);
+          this.router.navigate([this.session.backRoute]);
       }, error =>{
           console.log("Error on : ", error);
       })
@@ -51,15 +54,13 @@ export class PostCreateComponent implements OnInit {
   onClickSaveChanges(){
      this.post.update(this.form, response=>{
          console.log("Successful update: ",response);
-         this.router.navigate(['/forums/posts']);
+         this.router.navigate([this.session.backRoute]);
      }, error =>{
-        console.log("Error on update", error);
+        alert("Error on update"+ error);
      });
 
   }
 
-   onClickBack(){
-     this.router.navigate(['/forums/posts']);  
-   }
+   
 
 }

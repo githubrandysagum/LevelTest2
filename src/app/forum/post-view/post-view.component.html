@@ -13,6 +13,11 @@
                 <a>Like</a>   
                 <a>Comments {{ post.no_of_comment}}</a>
             </li>
+            <li class="list-group-item">
+                <button class="btn btn-default" (click)="onClickEditPost()">Edit Post</button>
+                <button class="btn btn-default" (click)="onClickDeletePost(post.idx)">Delete</button>   
+                <!--<button (click)="onClickEditPost(post.idx)"></button>   -->
+            </li>
         </ul>
     </div>        
 </div>

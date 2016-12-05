@@ -15,7 +15,8 @@
                         <img src="/assets/user.png" user-img  alt = "image" >
                         <div>{{comment.content}}</div>
                     </div>                 
-                    <button (click)="onClickDelete(comment.idx)">delete</button>
+                    <button (click)="onClickDelete(comment.idx)">Delete</button>
+                    <button (click)="onClickEditComment(comment.idx, comment.content)">Edit</button>
                 </li>
             </ul>                                     
         </div>

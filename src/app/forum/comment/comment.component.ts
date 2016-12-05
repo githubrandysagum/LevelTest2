@@ -41,7 +41,7 @@ export class CommentComponent implements OnInit {
       else{ this.show = ""; }
   }
 
-  onClickUpdateComment(idx, data){
+  onClickEditComment(idx, data){
       this.updateIdx = idx;
       this.comment = data;
   }
@@ -63,6 +63,7 @@ export class CommentComponent implements OnInit {
   onClickDelete(idx){
       this.deleting = "true";
     this.post.delete(idx, response=>{
+      alert('Delete success')
         this.refreshComments(this.postId, this.idx);
         this.deleting = "";
     }, error=>{

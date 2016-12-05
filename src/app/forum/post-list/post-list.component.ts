@@ -38,6 +38,7 @@ export class PostListComponent implements OnInit {
   onClickAddPost(){
     this.router.navigate(['/forums/post']);
     localStorage.setItem("forums_postIDX", '');
+    this.session.setBackRoute('forums/posts');
   }
 
   onClickEdit(idx){

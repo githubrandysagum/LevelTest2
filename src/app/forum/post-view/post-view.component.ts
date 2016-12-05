@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { SessionService } from '../../services/session.service';
 
@@ -17,9 +18,9 @@ export class PostViewComponent implements OnInit {
   postIdx : string;
   constructor(
     private postservice : Post,
-    private session : SessionService
+    private session : SessionService,
+    private router : Router
   ) {
-      
        this.session.setBackRoute("forums/posts");
    }
 
@@ -31,9 +32,25 @@ export class PostViewComponent implements OnInit {
   getIDs(){
     this.postId = localStorage.getItem('forums_postID');
       this.postIdx = localStorage.getItem('forums_postIDX');
-
       this.loadPosts(this.postId, this.postIdx);
   }
+
+  onClickEditPost(){
+    this.router.navigate(['/forums/post']);
+    this.session.setBackRoute('forums/postview');
+  }
+
+  onClickDeletePost(idx){
+
+    this.postservice.delete(idx, reponse=>{
+        this.router.navigate(['forums/posts']);
+    }, e =>{
+        alert('Error on deleting:'+ e);
+    })
+  }
+
+
+
   loadPosts(postID : string, idx : string){
     let data = <PAGE_DATA>{
         post_id:  postID , 
