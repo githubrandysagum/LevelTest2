@@ -1,31 +1,53 @@
-# LevelTest2
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
+#Installation
+npm Install
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+download bootstrap 
+from http://v4-alpha.getbootstrap.com/
 
-## Code scaffolding
+and include bootsrap script in index.html just like below example
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<script src=assets/bootstrap/css/bootstrap.min.js"></script>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+v4-alpha bootsrap tooltips need 
+Tether, A client-side library to make absolutely positioned elements attach to elements in the page efficiently.
+you can download it and include the script in index.html just like below example
 
-## Build
+<link rel="stylesheet" href="assets/tether/css/tether.min.css">
+<script src=assets/tether/css/tether.min.js"></script>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+#Need Jquery for using v4-alpha bootstrap Components directly.
+ Download link:
+    http://jquery.com/download/
+    include its script on above bootstrap link and scripts on index.html
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+################################################
 
-## Running end-to-end tests
+# Install and include ng-bootstrap in the app
+npm install --save @ng-bootstrap/ng-bootstrap
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+# Make sure that the ff. is included in your app module 
 
-## Deploying to Github Pages
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
-Run `ng github-pages:deploy` to deploy to Github Pages.
+@NgModule({
+  
+  imports: [NgbModule.forRoot(), ...],
+ 
+})
 
-## Further help
 
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#Guide
+# How to use the app
+* Use Login link to login on your existing account
+* If no account or not registered used Register link for registration
+* Forums will show list of ID for each list category
+    >> Clicking specific category will app will show list of post.
+    >> For each post you can able to click comment link to show all list of comments in a specific Post in modal.
+    >> To view a specific Post details only, click the header of the post.
+    >> Under Post View you can able to Update, Delete and  or even CRUD comment.
+
+* Use left arrow  icon on the top of the app Header besides the LOGO and Brand name 
+  to move back on your previous page you visit under forum.
+
