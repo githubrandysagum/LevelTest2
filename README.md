@@ -6,16 +6,17 @@ download bootstrap
 from http://v4-alpha.getbootstrap.com/
 
 and include bootsrap script in index.html just like below example
+````
 `<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" >`
 `<script src=assets/bootstrap/css/bootstrap.min.js"></script>`
-
+`````
 v4-alpha bootsrap tooltips need 
 Tether, A client-side library to make absolutely positioned elements attach to elements in the page efficiently.
 you can download it and include the script in index.html just like below example
-
+`````
 `<link rel="stylesheet" href="assets/tether/css/tether.min.css">`
 `<script src=assets/tether/css/tether.min.js"></script>`
-
+```````
 
 #Need Jquery for using v4-alpha bootstrap Components directly.
  *Download link:
