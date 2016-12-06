@@ -81,9 +81,10 @@ export class PostListComponent implements OnInit {
     };
      this.post.page(data, response =>{
         this.posts = response;
-
         console.log("Post structured",this.posts);
-      
+        
+
+
      }, error =>{
         console.log(error);
      });

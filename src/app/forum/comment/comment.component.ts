@@ -1,154 +1,66 @@
 import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
-
+import { CommentModalComponent } from '../components/comment-modal/comment-modal.component';
 
 
 @Component({
   selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss'],
-  inputs : ['idx', 'comments','show','postId'],
-  outputs : [ 'onAdd'],
+  templateUrl: 'comment.component.html',
+  styleUrls: ['comment.component.scss'],
+  inputs : [ 'content' , 'subject', 'idx', 'postGroupId', 'postIdx' ]
  
 })
 
 export class CommentComponent implements OnInit {
-    idx;
-    comments : Array<any>;
-    commentsdisplay = [];
-    show = "";
-    updateIdx = "";
-    onAdd = new EventEmitter();
-    focus =false;
-    comment = "";
-    postId = "";
-    deleting = "";
-  
+  idx = "";
+  content = "";
+  subject = "";
+  postIdx = "";
+  postGroupId = "";
   constructor( 
     private modalService: NgbModal,
-    private post : Post
+    private activeModal : NgbActiveModal,
+    private postService : Post
   ) { }
 
   ngOnInit() { 
 
   }
 
-  onClickToggleComment(){
-      
-      if(this.show == "" ){ this.show = "show"; }
-      else{ this.show = ""; }
-  }
 
-  onClickEditComment(idx, data){
-      this.updateIdx = idx;
-      this.comment = data;
-  }
+  onClickEdit(){
 
-  onClickSaveUpdate(){
-    this.updateComment(this.updateIdx, this.comment, ()=>{
-      this.updateIdx = "";
-      this.comment = "";
-    });
-    this.focus = true;
-  }
-
-
-  onClickCancelUpdate(){
-    this.updateIdx = "";
-      this.comment = "";
-  }
-
-  onClickDelete(idx){
-      this.deleting = "true";
-    this.post.delete(idx, response=>{
-      alert('Delete success')
-        this.refreshComments(this.postId, this.idx);
-        this.deleting = "";
-    }, error=>{
-        alert("Delete comment error: " +error);
-    })
+     let modalRef = this.modalService.open(CommentModalComponent);
+            modalRef.componentInstance.content = this.content;
+            modalRef.componentInstance.idx = this.idx;
+            modalRef.componentInstance.updateSave 
+                    .subscribe(content => {
+                     this.content = content;
+                    
+                  });
 
   }
-    
-  onClickCreate( ){
-    this.createComment(this.idx, this.comment);
-  }
 
-   open(content) {
-        this.modalService.open(content).result.then((result) => {
-      }, (reason) => {
-        alert('Error modal close'+ reason);
-      });
-    }
-
-   private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-        return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-        return 'by clicking on a backdrop';
-      } else {
-        return  `with: ${reason}`;
-      }
-    }
-
- 
-   private updateComment( idx, data, success) {
-        console.log("updateComment()");
-        let c = <POST_DATA> {};
-        c.idx = idx;
-        c.subject = "Subject";
-        c.content = data;
-        this.post.update( c, data => {
-            
-            this.refreshComments(this.postId, this.idx);
-            success(data);
-        }, error => {
-            console.error("Comment update error: " + error );
-            alert("There is an error on updating your comment! Philgo says:" + error );
-        })
-    }
-
-    private createComment( idx_parent, data ) {
-        console.log("createComment()");
-        let c = <POST_DATA> {};
-        c.idx_parent = idx_parent;
-        c.subject = "Comment title";
-        c.content = data;
-    
-        this.post.createComment( c, data => {              
-            this.refreshComments(this.postId, this.idx);
-        }, error => {
-            alert("An error occured on submitting your comment! Philgo says:" + error)
-            console.error("create comment error: " + error );     
-        } );
-    }
-
-    private refreshComments(postID : string, idx : string){
-      let data = <PAGE_DATA>{
-          post_id:  postID , 
-          page_no: 1,
-          limit: 10
-      };
-      this.post.page(data, response =>{
-          this.comment = "";
-          for(let key in response.posts){
-              if(response.posts[key].idx == idx){
-                console.log("Result",response.posts[key].comments)
-                this.comments = response.posts[key].comments;
-                return;
-              }
-          }
-
-      }, error =>{
-          console.log("Error refreshing comments",error);
-      });
-    }
-
-
+  refreshlocalStorage(){
+     let posts = {};
+    try{
+      posts = JSON.parse(localStorage.getItem(this.postGroupId));
      
-  
+    }catch(e){
+      console.log('Error on parsing object from local storage');
+      return;
+    }
+
+    try{
+
+    }catch(e){
+
+    }
+      
+                    
+  }
 
 
 }

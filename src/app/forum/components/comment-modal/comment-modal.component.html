@@ -1,0 +1,21 @@
+<div>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="onClickDismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" *ngIf = "edit">Create Comment</h4>
+    <h4 class="modal-title" *ngIf = "create">Create Comment</h4>
+  </div>
+  <div class="modal-body">
+     
+        <div class="form-group">  
+            ID {{ comment_idx }}         
+           <input type="text" [(ngModel)]="content"><br>        
+        </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button *ngIf = "idx"  type="button" class="btn btn-secondary" (click)="onClickSave()">Save</button>
+    <button *ngIf = "!idx" type="button" class="btn btn-secondary" >Submit</button>
+  </div>
+</div>

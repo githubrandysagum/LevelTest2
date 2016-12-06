@@ -11,25 +11,25 @@
 
         <div class="card-block">
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
-            <p class="card-text" > {{ post.content | HTMLCHAR}}</p> 
+            <!--<p class="card-text" > {{ post.content | HTMLCHAR}}</p>-->
+          
         </div>  
 
-        <div class="card">
-            <ul class="list-group">
-             <li class="list-group-item">        
-                    <a>Like</a> 
-                    <app-comment [postId] = "postId" 
-                                [comments]= "post.comments" 
-                                [show]="showComments" 
-                                [idx] = "post.idx" 
-                                (onAdd)="onClickAddComment($event)" >
-                    </app-comment>    
-                    {{ post.no_of_comment}} 
-              </li> 
-             </ul>          
+        <div class="card-block" *ngIf = "post.comments">
+            <div *ngFor = "let comment of post.comments">
+                <div *ngIf = "comment">
+                    <app-comment [postGroupId] = "postId" 
+                                 [(content)]="comment.content" 
+                                 [idx]="comment.idx"
+                                 [postIdx] = "post.idx";
+                                 >
+
+                    </app-comment>
+                </div>               
+            </div>      
         </div>  
-    </div>
-    <br>
+  </div>
+    
 </div>
 
 
