@@ -2,18 +2,19 @@
 <ul class="list-group" >
     <li class="list-group-item"  *ngFor = "let comment of commentsOnDisplay">
         <div *ngIf = "comment">           
-            <app-comment [comment] = "comment"></app-comment>               
+            <app-comment [comment] = "comment" (deleted)="onCommentDeleted($event)"></app-comment>               
         </div>               
     </li> 
-    <li class="list-group-item" *ngIf = "comment_is_Higher_Than_Five" >
-        <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
-        <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
-    </li>
     <li class="list-group-item" >
         <div class="form-group">
+            <div *ngIf = "comment_is_Higher_Than_Five" >
+                <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
+                <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
+            </div>
             <span class="fa fa-user-circle-o" user-img></span>
             <!--<span  class="small"><strong>{{ post.member.id}}</strong></span>-->
-            <input type="text" class="form-control" placeholder="Write comment...">
+            <input type="text" *ngIf="!creatingComment" class="form-control" [(ngModel)] = "writeComment" (keydown)="onEnterWriteComment($event)" placeholder="Write comment...">
+            <span *ngIf="creatingComment"> {{ writeComment }} ...</span>
         </div>
     </li>
     

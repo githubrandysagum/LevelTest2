@@ -5,18 +5,23 @@
 <div *ngFor = "let post of posts.posts" >  
     <div class="card">
         <div class="card-header">
-         <img src="/assets/user.png" user-img  alt = "image" > 
-       
+         <img src="/assets/user.png" user-img  alt = "image" >  
          <strong >{{ post.member.id | HTMLCHAR}}</strong>
         </div>   
 
         <div class="card-block">
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
-            <p class="card-text" > {{ post.content | HTMLCHAR}}</p>
+            <p class="card-text" [innerHTML] = "post.content " ></p>
         </div>     
     </div>
     <div class="card-block">
-        <app-comment-list [comments] = "post.comments" (deleted)="onCommentDelete($event)"></app-comment-list> 
+        <app-comment-list 
+        [postId]= "postId" 
+        [idxParent] = "post.idx" 
+        [comments] = "post.comments" 
+        (commentDeleted)="onCommentDeleted($event)"
+        (commentAdded)="onCommentAdded($event)"
+        ></app-comment-list> 
      </div>    
 </div>
 

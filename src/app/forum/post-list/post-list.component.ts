@@ -59,7 +59,7 @@ export class PostListComponent implements OnInit {
      }
   }
 
-  onClickAddComment($event){
+  onCommentAdded($event){
     console.log("From Post Parent Add Comment result: ",$event);
     this.showComments = $event;
     this.loadPosts(this.postId);
@@ -96,4 +96,9 @@ export class PostListComponent implements OnInit {
       this.router.navigate(['/forums/postview'])
   }
 
+
+    onCommentDeleted($event){
+        this.loadPosts(this.postId);   
+    }
+  
 }

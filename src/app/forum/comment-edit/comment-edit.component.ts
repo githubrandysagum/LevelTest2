@@ -18,7 +18,7 @@ export class CommentEditComponent implements OnInit {
     comment = "";
     postIdx = "";
     edited = new EventEmitter();
-  
+    deleted = new EventEmitter();
   constructor( 
     private modalService: NgbModal,
     private post : Post

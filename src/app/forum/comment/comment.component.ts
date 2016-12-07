@@ -16,6 +16,8 @@ import { CommentModalComponent } from '../components/comment-modal/comment-modal
 
 export class CommentComponent implements OnInit {
  comment = {};
+ deleted = new EventEmitter();
+ deleting = "";
   constructor( 
     private modalService: NgbModal,
     private activeModal : NgbActiveModal,
@@ -34,14 +36,24 @@ export class CommentComponent implements OnInit {
            
             modalRef.componentInstance.updateSave 
                     .subscribe(comment => {
-                     this.comment = comment;
-                    
+                     this.comment = comment;          
                   });
 
   }
 
   onClickDelete(){
-    this.comment['idx'] = "";
+     if(!confirm("Do you really want to delete this?")) return
+    this.deleting = "delete";
+   
+    this.postService.delete(this.comment['idx'], re =>{
+      console.log("response", re);
+       this.deleted.emit(this.comment)
+    }, error =>{
+      console.log("error", error);
+    })
+
+
+
   }
 
 
