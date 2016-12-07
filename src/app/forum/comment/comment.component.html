@@ -1,12 +1,20 @@
 
 
-{{ subject }}
-{{ content }}
+<div class="form-group" *ngIf = "comment['idx']">
+    <!--<img src="/assets/user.png" user-img  alt = "image" > -->
+    <span class="fa fa-user-circle-o" user-img></span>
+    <span  class="small"><strong>{{ comment['member']['id']}}</strong></span>
+    <span class="fa fa-pencil-square-o text-primary" (click)="onClickEdit()"></span>
+    <span class="fa fa-trash" (click)="onClickDelete()"></span>
+    <p class="small">{{ comment['content'] }}</p>
+</div>
 
 
 
 
-<button (click)="onClickEdit()">Edit</button>
+
+
+
 
 
 

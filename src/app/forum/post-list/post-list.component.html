@@ -1,35 +1,23 @@
 
 <h2 class="text-primary">{{postId | HTMLCHAR }}</h2>
-<button class="btn btn-default" (click)="onClickAddPost()">Add Post</button>
+<!--<button class="btn btn-default" (click)="onClickAddPost()">Add Post</button>-->
 
 <div *ngFor = "let post of posts.posts" >  
     <div class="card">
-        <div class="card-header" (click)="onClickViewPost(post.idx)">
+        <div class="card-header">
          <img src="/assets/user.png" user-img  alt = "image" > 
-         {{ post.member.name | HTMLCHAR}}
+       
+         <strong >{{ post.member.id | HTMLCHAR}}</strong>
         </div>   
 
         <div class="card-block">
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
-            <!--<p class="card-text" > {{ post.content | HTMLCHAR}}</p>-->
-          
-        </div>  
-
-        <div class="card-block" *ngIf = "post.comments">
-            <div *ngFor = "let comment of post.comments">
-                <div *ngIf = "comment">
-                    <app-comment [postGroupId] = "postId" 
-                                 [(content)]="comment.content" 
-                                 [idx]="comment.idx"
-                                 [postIdx] = "post.idx";
-                                 >
-
-                    </app-comment>
-                </div>               
-            </div>      
-        </div>  
-  </div>
-    
+            <p class="card-text" > {{ post.content | HTMLCHAR}}</p>
+        </div>     
+    </div>
+    <div class="card-block">
+        <app-comment-list [comments] = "post.comments" (deleted)="onCommentDelete($event)"></app-comment-list> 
+     </div>    
 </div>
 
 

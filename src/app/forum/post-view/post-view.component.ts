@@ -8,15 +8,13 @@ import { SessionService } from '../../services/session.service';
 @Component({
   selector: 'app-post-view',
   templateUrl: './post-view.component.html',
-  styleUrls: ['./post-view.component.scss']
+  styleUrls: ['./post-view.component.scss'],
+  inputs : ['post']
 })
 export class PostViewComponent implements OnInit {
 
   post : POST_DATA;
-  posts : any;
-  postId : string;
-  postIdx : string;
-  message : "";
+ 
   constructor(
     private postservice : Post,
     private session : SessionService,
@@ -26,18 +24,18 @@ export class PostViewComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getIDs();
+   
   }
 
-  onEditEvent($event){
-    this.loadPosts(this.postId, this.postIdx);
-  }
+  // onEditEvent($event){
+  //   this.loadPosts(this.postId, this.postIdx);
+  // }
 
-  getIDs(){
-    this.postId = localStorage.getItem('forums_postID');
-      this.postIdx = localStorage.getItem('forums_postIDX');
-      this.loadPosts(this.postId, this.postIdx);
-  }
+  // getIDs(){
+  //   this.postId = localStorage.getItem('forums_postID');
+  //     this.postIdx = localStorage.getItem('forums_postIDX');
+  //     this.loadPosts(this.postId, this.postIdx);
+  // }
 
   onClickEditPost(){
     this.router.navigate(['/forums/post']);
@@ -53,22 +51,22 @@ export class PostViewComponent implements OnInit {
     })
   }
 
-  onClickAddComment( ){
+  // onClickAddComment( ){
     
-        console.log("createComment()");
-        let c = <POST_DATA> {};
-        c.idx_parent = this.postIdx;
-        c.subject = "Comment title";
-        c.content = this.message;
+  //       console.log("createComment()");
+  //       let c = <POST_DATA> {};
+  //       c.idx_parent = this.postIdx;
+  //       c.subject = "Comment title";
+  //       c.content = this.message;
     
-        this.postservice.createComment( c, data => {     
-            this.message = "";         
-            this.loadPosts(this.postId, this.postIdx);
-        }, error => {
-            alert("An error occured on submitting your comment! Philgo says:" + error)
-            console.error("create comment error: " + error );     
-        } );
-    }
+  //       this.postservice.createComment( c, data => {     
+  //           this.message = "";         
+  //           this.loadPosts(this.postId, this.postIdx);
+  //       }, error => {
+  //           alert("An error occured on submitting your comment! Philgo says:" + error)
+  //           console.error("create comment error: " + error );     
+  //       } );
+  //   }
 
 
 
@@ -77,36 +75,36 @@ export class PostViewComponent implements OnInit {
     // this.session.setBackRoute('forums/postview');
   }
 
-  onClickDeleteComment(idx){
+  // onClickDeleteComment(idx){
 
-    this.postservice.delete(idx, reponse=>{
-       this.loadPosts(this.postId, this.postIdx);
-    }, e =>{
-        alert('Error on deleting comment:'+ e);
-    })
-  }
+  //   this.postservice.delete(idx, reponse=>{
+  //      this.loadPosts(this.postId, this.postIdx);
+  //   }, e =>{
+  //       alert('Error on deleting comment:'+ e);
+  //   })
+  // }
 
 
 
-  loadPosts(postID : string, idx : string){
-    let data = <PAGE_DATA>{
-        post_id:  postID , 
-        page_no: 1,
-        limit: 10
-    };
-     this.postservice.page(data, response=>{
-        this.posts = response;
-         for(let key in response.posts){
-              if(response.posts[key].idx == idx){
-                this.post = response.posts[key];
-                return;
-              }
-          }
-        console.log("Post structured",this.posts);
+  // loadPosts(postID : string, idx : string){
+  //   let data = <PAGE_DATA>{
+  //       post_id:  postID , 
+  //       page_no: 1,
+  //       limit: 10
+  //   };
+  //    this.postservice.page(data, response=>{
+  //       this.posts = response;
+  //        for(let key in response.posts){
+  //             if(response.posts[key].idx == idx){
+  //               this.post = response.posts[key];
+  //               return;
+  //             }
+  //         }
+  //       console.log("Post structured",this.posts);
       
-     }, error =>{
-        console.log(error);
-     });
+  //    }, error =>{
+  //       console.log(error);
+  //    });
 
-  }
+  // }
 }

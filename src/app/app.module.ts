@@ -19,6 +19,8 @@ import { CommentEditComponent } from './forum/comment-edit/comment-edit.componen
 import { HTMLCHARPipe } from './pipes/htmlchar.pipe';
 import { PostViewComponent } from './forum/post-view/post-view.component';
 import { CommentModalComponent } from './forum/components/comment-modal/comment-modal.component';
+import { CommentListComponent } from './forum/comment-list/comment-list.component';
+
 
 
 require('zone.js');
@@ -48,7 +50,8 @@ const links : Routes = [
     CommentEditComponent,
     HTMLCHARPipe,
     PostViewComponent,
-    CommentModalComponent
+    CommentModalComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

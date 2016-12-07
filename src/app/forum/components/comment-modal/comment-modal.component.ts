@@ -5,15 +5,13 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-comment-modal',
   templateUrl : 'comment-modal.component.html',
-  inputs : ['content', 'idx', 'subject'],
+  inputs : ['comment'],
   outputs : ['updateSave']
 })
 
 
 export class CommentModalComponent {
-  idx = ''
-  subject = "";
-  content : "";
+  comment = {};
   updateSave = new EventEmitter();
 
 
@@ -27,13 +25,14 @@ export class CommentModalComponent {
 
   onClickSave(){
         console.log("updateComment()");
+        console.log(this.comment);
         let c = <POST_DATA> {};
-        c.idx = this.idx;
-        c.subject =this.subject;
-        c.content = this.content;
+        c.idx = this.comment['idx'];
+        c.subject = this.comment['member']['name'];
+        c.content = this.comment['content'];
         this.postService.update( c, data => {
             console.log("updateComment() success: ", data);     
-            this.updateSave.emit(this.content);
+            this.updateSave.emit(this.comment);
             this.modal.close();
         }, error => {
             console.error("comment update error: " + error );

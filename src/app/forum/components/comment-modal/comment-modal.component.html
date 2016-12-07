@@ -3,19 +3,23 @@
     <button type="button" class="close" aria-label="Close" (click)="onClickDismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title" *ngIf = "edit">Create Comment</h4>
-    <h4 class="modal-title" *ngIf = "create">Create Comment</h4>
+    <h5 class="modal-title">
+      <span class="fa fa-user-circle-o" user-img></span>
+      <span class="text-primary">
+        {{ comment['member']['id'] }}
+      </span>
+    </h5>
+    
   </div>
   <div class="modal-body">
      
         <div class="form-group">  
-            ID {{ comment_idx }}         
-           <input type="text" [(ngModel)]="content"><br>        
+           <input class="form-control" type="text" [(ngModel)]="comment['content']"><br>        
         </div>
     
   </div>
   <div class="modal-footer">
-    <button *ngIf = "idx"  type="button" class="btn btn-secondary" (click)="onClickSave()">Save</button>
-    <button *ngIf = "!idx" type="button" class="btn btn-secondary" >Submit</button>
+    <button *ngIf = "comment['idx']"  type="button" class="btn btn-secondary" (click)="onClickSave()">Save</button>
+    <button *ngIf = "!comment['idx']" type="button" class="btn btn-secondary" >Submit</button>
   </div>
 </div>
