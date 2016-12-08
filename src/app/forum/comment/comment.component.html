@@ -1,13 +1,18 @@
 
 
 <div class="form-group" *ngIf = "comment['idx']">
+
+    
     <!--<img src="/assets/user.png" user-img  alt = "image" > -->
     <span class="fa fa-user-circle-o" user-img></span>
     <span  class="small"><strong>{{ comment['member']['id']}}</strong></span>
-    <span class="fa fa-pencil-square-o text-primary" *ngIf = "!deleting"  (click)="onClickEdit()"></span>  
-    <span class="fa fa-trash" *ngIf = "!deleting" (click)="onClickDelete()"></span>
+    
      &nbsp;<span class=" text-danger" *ngIf = "deleting" >deleting comment...</span>
      <span class="small" [innerHTML] = "comment['content']" ></span>
+     <div *ngIf="isOwnByUser">
+         <span class="fa fa-pencil-square-o text-primary" *ngIf = "!deleting"  (click)="onClickEdit()"></span>  
+         <span class="fa fa-trash" *ngIf = "!deleting" (click)="onClickDelete()"></span>
+    </div>
 </div>
 
 

@@ -3,7 +3,7 @@ import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bo
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
 import { CommentModalComponent } from '../components/comment-modal/comment-modal.component';
-
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-comment',
@@ -18,16 +18,33 @@ export class CommentComponent implements OnInit {
  comment = {};
  deleted = new EventEmitter();
  deleting = "";
+ isOwnByUser = false;
   constructor( 
     private modalService: NgbModal,
     private activeModal : NgbActiveModal,
-    private postService : Post
-  ) { }
+    private postService : Post,
+    private session : SessionService
+  ) {
 
-  ngOnInit() { 
+   
 
   }
 
+  ngOnInit() { 
+     this.checkUser();
+  }
+
+  checkUser(){
+    if(this.session.login && this.comment){
+     
+        if(this.session.login['id'] == this.comment['member']['id']){
+         // console.log(this.comment['member']['id']);
+          this.isOwnByUser = true;
+        }
+
+    }
+
+  }
 
   onClickEdit(){
     console.log('Editing this comment:', this.comment)

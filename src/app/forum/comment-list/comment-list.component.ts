@@ -61,16 +61,17 @@ export class CommentListComponent implements OnInit {
         c.content = this.writeComment;
         this.postService.createComment( c, data => {   
 
+            console.log("Response",data);
             this.comments.push(data.post); 
-            this.refreshDisplayComments(this.showMore);
-           console.log("Response",data);
-           
-            
+            this.showMore = true;
+            this.refreshDisplayComments( this.showMore );  
             this.creatingComment = false;
             this.writeComment = "";
+
         }, error => {
-          this.creatingComment = false;
-          this.writeComment = "";
+
+           this.creatingComment = false;
+           this.writeComment = "";
             console.error("Comment update error: " + error );
             alert("There is an error on updating your comment! Philgo says:" + error );
         })
@@ -97,7 +98,7 @@ export class CommentListComponent implements OnInit {
     if(typeof(this.comments) == "undefined") return;
     if(!this.comments.length) return;
     if(showmore) number = this.comments.length;
-      this.comment_is_Higher_Than_Five = number > 5;
+      this.comment_is_Higher_Than_Five = this.comments.length > 5;
       this.commentsOnDisplay = _.take(this.comments, number);
   }
 
