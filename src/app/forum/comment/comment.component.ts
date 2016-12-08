@@ -49,17 +49,27 @@ export class CommentComponent implements OnInit {
   onClickEdit(){
     console.log('Editing this comment:', this.comment)
      let modalRef = this.modalService.open(CommentModalComponent);
-            modalRef.componentInstance.comment = this.comment;
+            modalRef.componentInstance.idx = this.comment['idx'];
+            modalRef.componentInstance.idx_parent = this.comment['idx_parent'];
+            modalRef.componentInstance.post_id = this.comment['post_id'];
+            modalRef.componentInstance.member_id = this.comment['member']['id'];
+            modalRef.componentInstance.subject = 'Subject';
+            modalRef.componentInstance.content = this.comment['content'];
            
+          
+
             modalRef.componentInstance.updateSave 
                     .subscribe(comment => {
-                     this.comment = comment;          
+                      console.log("Result : ", comment);    
+                      this.comment['subect'] = comment['subject']; 
+                      this.comment['content'] = comment['content'];
+                      
                   });
 
   }
 
   onClickDelete(){
-     if(!confirm("Do you really want to delete this?")) return
+     if(!confirm("Are you sure?")) return;
     this.deleting = "delete";
    
     this.postService.delete(this.comment['idx'], re =>{

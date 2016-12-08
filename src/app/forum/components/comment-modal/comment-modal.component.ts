@@ -5,13 +5,20 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-comment-modal',
   templateUrl : 'comment-modal.component.html',
-  inputs : ['comment'],
+  inputs : ['comment','idx','idx_parent','post_id','subject','content','member_id'],
   outputs : ['updateSave']
 })
 
 
 export class CommentModalComponent {
-  comment = {};
+  idx = "";
+  idx_parent = "";
+  post_id = "";
+  subject = "";
+  content = "";
+  member_id = "";
+
+
   updateSave = new EventEmitter();
 
 
@@ -25,24 +32,36 @@ export class CommentModalComponent {
 
   onClickSave(){
         console.log("updateComment()");
-        console.log(this.comment);
-        let c = <POST_DATA> {};
-        c.idx = this.comment['idx'];
-        c.subject = this.comment['member']['name'];
-        c.content = this.comment['content'];
-        this.postService.update( c, data => {
+        let comment = <POST_DATA> {};
+            comment.idx = this.idx;
+            comment.post_id = this.post_id;
+            comment.idx_parent = this.idx_parent;
+            comment.subject = this.subject;
+            comment.content = this.content;
+
+
+        this.postService.update( comment, data => {
+
             console.log("updateComment() success: ", data);     
-            this.updateSave.emit(this.comment);
+            this.updateSave.emit(comment);
             this.modal.close();
+
         }, error => {
+
             console.error("comment update error: " + error );
             alert( error );
+
+
         })
+  }
+
+  onClickCancel(){
+    this.modal.close('Close');
   }
 
 
   onClickDismiss(){
-    alert('You were dismissing this modal')
+    this.modal.dismiss('dismiss');
   }
 
 

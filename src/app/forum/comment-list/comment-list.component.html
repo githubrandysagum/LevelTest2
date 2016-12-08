@@ -1,5 +1,5 @@
 <strong class="text-primary">Comments </strong>
-<ul class="list-group" >
+<ul class="list-group" *ngIf= "commentsOnDisplay">
     <li class="list-group-item"  *ngFor = "let comment of commentsOnDisplay">
         <div *ngIf = "comment">           
             <app-comment [comment] = "comment" (deleted)="onCommentDeleted($event)"></app-comment>               
@@ -12,9 +12,10 @@
                 <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
             </div>
             <span class="fa fa-user-circle-o" user-img></span>
-            <!--<span  class="small"><strong>{{ post.member.id}}</strong></span>-->
-            <input type="text" *ngIf="!creatingComment" class="form-control" [(ngModel)] = "writeComment" (keydown)="onEnterWriteComment($event)" placeholder="Write comment...">
-            <span *ngIf="creatingComment"> {{ writeComment }} ...</span>
+            &nbsp;<span *ngIf = "session" class="small"><strong>{{ session.login.id }}</strong></span>
+                 <input type="text" *ngIf="!creatingComment" class="form-control small" [(ngModel)] = "writeComment" (keydown)="onEnterWriteComment($event)" placeholder="Write comment...">
+           
+            <span *ngIf="creatingComment" class="small"> {{ writeComment }} ...</span>
         </div>
     </li>
     

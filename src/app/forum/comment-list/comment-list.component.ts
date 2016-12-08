@@ -2,6 +2,7 @@ import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
+import { SessionService } from '../../services/session.service';
 import * as _ from 'lodash';
 
 
@@ -14,6 +15,8 @@ import * as _ from 'lodash';
 })
 
 export class CommentListComponent implements OnInit {
+
+  
   this_comments : any;
   commentsOnDisplay = [];
   comments = [];
@@ -28,7 +31,8 @@ export class CommentListComponent implements OnInit {
 
   constructor( 
     private modalService: NgbModal,
-    private postService : Post
+    private postService : Post,
+    private session : SessionService
   ) { 
 
     
@@ -44,7 +48,9 @@ export class CommentListComponent implements OnInit {
                 console.log('x:', comment);
                 return comment.idx == deleteComment.idx;
             } );
-      this.refreshDisplayComments(this.showMore);
+
+     
+     this.refreshDisplayComments(this.showMore);
 
         
   }
@@ -96,10 +102,23 @@ export class CommentListComponent implements OnInit {
     let number = 5;
 
     if(typeof(this.comments) == "undefined") return;
-    if(!this.comments.length) return;
+    this.comment_is_Higher_Than_Five = this.comments.length > 5;
     if(showmore) number = this.comments.length;
-      this.comment_is_Higher_Than_Five = this.comments.length > 5;
-      this.commentsOnDisplay = _.take(this.comments, number);
+     
+
+    //important check the array if it is empty before use _.take() method it will return undefined
+     if(this.comments.length) {
+        this.commentsOnDisplay = _.take(this.comments, number);
+        console.log('Not equal to zero')
+     } 
+     else{
+       console.log('Equal to zero')
+       this.commentsOnDisplay = [];
+     } 
+      
+      
+
+      
   }
 
   
