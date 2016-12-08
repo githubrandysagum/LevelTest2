@@ -12,13 +12,12 @@
             <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
             <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
         </div>
-        <span class="fa fa-user-circle-o" user-img></span>
-        <span *ngIf = "session" class="small"><strong>{{ session.login.id }}</strong></span>
-        <input type="text" *ngIf="!creatingComment" 
+        
+        <!--<input type="text" *ngIf="!creatingComment" 
                             class="form-control small" 
                             [(ngModel)] = "writeComment" 
                             (keydown)="onEnterWriteComment($event)" 
-                            placeholder="Write comment...">
+                            placeholder="Write comment...">-->
         
-        <span *ngIf="creatingComment" class="small"> {{ writeComment }} ...</span>           
+              
     

@@ -1,5 +1,6 @@
     <div class="card">
-        <div class="card-header">
+        <div class="card-header">Article</div>
+        <div class="card-block">
             <img src="/assets/user.png" user-img  alt = "image" >  
             <strong >{{ post.member.id | HTMLCHAR}}</strong>
             <span class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></span>
@@ -10,10 +11,14 @@
             <p class="card-text" [innerHTML] = "post.content " ></p>
         </div>
         <ul class="list-group" >
+            
             <li class="list-group-item">
-                <a>Like</a> <a>Comments</a> <a>Share</a>
+                
+                <a class="fa fa-thumbs-o-up  small"> Like </a> &nbsp;
+                <a class="fa fa-comments-o  small" >Comments <span class="tag tag-primary">{{post.no_of_comment}} </span></a> &nbsp;
+                <a class="fa fa-share  small" aria-hidden="true">Share</a> &nbsp;
             </li>
-            <li class="list-group-item"  >
+            <li class="list-group-item" *ngIf="post.comments" >
                 <app-comment-list 
                     [postId]= "post.post_id" 
                     [idxParent] = "post.idx" 
@@ -21,7 +26,20 @@
                     (commentDeleted)="onCommentDeleted($event)"
                     (commentAdded)="onCommentAdded($event)">
                 </app-comment-list>      
-            </li>      
+            </li> 
+            <li class="list-group-item" >  
+                <div>
+                    <span class="fa fa-user-circle-o" user-img></span>
+                    <span class="small"><strong>{{ session.login.id}}</strong></span>
+                    <input type="text" *ngIf="!creatingComment" 
+                                class="form-control small" 
+                                [(ngModel)] = "writeComment" 
+                                (keydown)="onEnterWriteComment($event)" 
+                                placeholder="Write comment...">
+                   
+                </div>
+               
+            </li>     
          </ul>  
       
      </div> 
