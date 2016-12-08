@@ -15,11 +15,12 @@
             <li class="list-group-item">
                 
                 <a class="fa fa-thumbs-o-up  small"> Like </a> &nbsp;
-                <a class="fa fa-comments-o  small" >Comments <span class="tag tag-primary">{{post.no_of_comment}} </span></a> &nbsp;
+                <a class="fa fa-comments-o  small" (click)="onClickShowComment()">Comments <span class="tag tag-primary">{{post.no_of_comment}} </span></a> &nbsp;
                 <a class="fa fa-share  small" aria-hidden="true">Share</a> &nbsp;
             </li>
             <li class="list-group-item" *ngIf="post.comments" >
-                <app-comment-list 
+                <span class="small"><strong class="text-primary">Comments </strong></span><br>
+                <app-comment-list *ngIf="showComments"
                     [postId]= "post.post_id" 
                     [idxParent] = "post.idx" 
                     [comments] = "post.comments" 

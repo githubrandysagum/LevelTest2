@@ -7,7 +7,7 @@
     <span class="small" [innerHTML] = "comment['content']" ></span>
       &nbsp;
       <span class=" text-danger small" *ngIf = "deleting" >deleting...</span>
-       &nbsp; &nbsp; &nbsp; &nbsp; 
+       &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
      <span *ngIf="isOwnByUser">   
             <br>
             <span class="fa fa-pencil-square-o text-primary" *ngIf = "!deleting"  (click)="onClickEdit()"></span>  

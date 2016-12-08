@@ -16,6 +16,8 @@ export class PostViewComponent implements OnInit {
 
   post : POST_DATA;
   deleted = new EventEmitter();
+ showComments = false;
+
   constructor(
     private postservice : Post,
     private session : SessionService,
@@ -28,7 +30,10 @@ export class PostViewComponent implements OnInit {
    
   }
 
-  
+  onClickShowComment(){
+    if(this.showComments) this.showComments = false;
+    else this.showComments = true;
+  }
 
   onClickEditPost(){
     this.router.navigate(['/forums/post']);
