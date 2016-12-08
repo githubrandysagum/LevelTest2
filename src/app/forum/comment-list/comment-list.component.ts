@@ -10,13 +10,12 @@ import * as _ from 'lodash';
   selector: 'app-comment-list',
   templateUrl: 'comment-list.component.html',
   styleUrls: ['comment-list.component.scss'],
-  inputs : ['comments','idxParent','postId'],
+  inputs : ['comments','idxParent','postId','show'],
   outputs : ['commentDeleted']
 })
 
 export class CommentListComponent implements OnInit {
-
-  
+  show = true;
   this_comments : any;
   commentsOnDisplay = [];
   comments = [];
@@ -39,8 +38,7 @@ export class CommentListComponent implements OnInit {
   }
 
   ngOnInit() { 
-     this.refreshDisplayComments( this.showMore );
-     if(typeof(this.comments)== "undefined") this.comments = [];
+    this.refreshDisplayComments(this.showMore);
   }
 
   onCommentDeleted($event){

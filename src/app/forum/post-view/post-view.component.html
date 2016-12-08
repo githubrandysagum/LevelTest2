@@ -10,8 +10,7 @@
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
             <p class="card-text" [innerHTML] = "post.content " ></p>
         </div>
-        <ul class="list-group" >
-            
+        <ul class="list-group" >         
             <li class="list-group-item">
                 
                 <a class="fa fa-thumbs-o-up  small"> Like </a> &nbsp;
@@ -19,14 +18,18 @@
                 <a class="fa fa-share  small" aria-hidden="true">Share</a> &nbsp;
             </li>
             <li class="list-group-item" *ngIf="post.comments" >
-                <span class="small"><strong class="text-primary">Comments </strong></span><br>
-                <app-comment-list *ngIf="showComments"
-                    [postId]= "post.post_id" 
-                    [idxParent] = "post.idx" 
-                    [comments] = "post.comments" 
-                    (commentDeleted)="onCommentDeleted($event)"
-                    (commentAdded)="onCommentAdded($event)">
-                </app-comment-list>      
+                <span class="tag tag-default" (click)="onClickShowComment()"><strong >Comments </strong></span><br>
+           
+                    <app-comment-list  
+                        [show] = "showComments"                             
+                        [postId]= "post.post_id" 
+                        [idxParent] = "post.idx" 
+                        [comments] = "post.comments" 
+                        (commentDeleted)="onCommentDeleted($event)"
+                        (commentAdded)="onCommentAdded($event)"      
+                        >
+                    </app-comment-list> 
+                 
             </li> 
             <li class="list-group-item" >  
                 <div>
