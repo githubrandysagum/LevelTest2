@@ -7,7 +7,7 @@
     <span class="fa fa-pencil-square-o text-primary" *ngIf = "!deleting"  (click)="onClickEdit()"></span>  
     <span class="fa fa-trash" *ngIf = "!deleting" (click)="onClickDelete()"></span>
      &nbsp;<span class=" text-danger" *ngIf = "deleting" >deleting comment...</span>
-     <p class="small" [innerHTML] = "comment['content']" ></p>
+     <span class="small" [innerHTML] = "comment['content']" ></span>
 </div>
 
 

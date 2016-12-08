@@ -2,7 +2,7 @@ import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
-
+import * as _ from 'lodash';
 
 
 @Component({
@@ -35,11 +35,18 @@ export class CommentListComponent implements OnInit {
   }
 
   ngOnInit() { 
-     this.refreshDisplayComments( 3 );
+     this.refreshDisplayComments( this.showMore );
   }
 
   onCommentDeleted($event){
-      this.commentDeleted.emit($event);
+    let deleteComment = $event;
+       _.remove( this.comments, comment => {
+                console.log('x:', comment);
+                return comment.idx == deleteComment.idx;
+            } );
+      this.refreshDisplayComments(this.showMore);
+
+        
   }
 
    
@@ -52,9 +59,13 @@ export class CommentListComponent implements OnInit {
         c.idx = "";
         c.subject = "Subject";
         c.content = this.writeComment;
-        this.postService.createComment( c, data => {        
+        this.postService.createComment( c, data => {   
+
+            this.comments.push(data.post); 
+            this.refreshDisplayComments(this.showMore);
+           console.log("Response",data);
            
-            this.commentAdded.emit($event);
+            
             this.creatingComment = false;
             this.writeComment = "";
         }, error => {
@@ -81,7 +92,7 @@ export class CommentListComponent implements OnInit {
 
 
   refreshDisplayComments( showmore ){
-    let number = 5
+    let number = 5;
     if(typeof(this.comments) == "undefined") return;
     if(!this.comments.length) return;
     if(showmore) number = this.comments.length;
