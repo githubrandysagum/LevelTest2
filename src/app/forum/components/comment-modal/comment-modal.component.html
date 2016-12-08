@@ -5,22 +5,25 @@
     </button>
     <h5 class="modal-title">
       <span class="fa fa-user-circle-o" user-img></span>
-      <span class="text-primary">
+      <span>
         {{ member_id }}
       </span>
     </h5>
     
   </div>
   <div class="modal-body">
-     
         <div class="form-group">  
            <input class="form-control" type="text" [(ngModel)]="content"><br>        
         </div>
     
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer" *ngIf ="!updating">
     <button  type="button" class="btn btn-secondary" (click)="onClickSave()">Save</button>
-    <button  type="button" class="btn btn-secondary" (click)="onClickCancel()">Cancel</button>
-    
+    <button  type="button" class="btn btn-secondary" (click)="onClickCancel()">Cancel</button>   
+  </div>
+  <div *ngIf ="updating">
+      <span>
+       Updating...
+      </span>
   </div>
 </div>

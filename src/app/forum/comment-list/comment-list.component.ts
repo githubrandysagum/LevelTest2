@@ -40,6 +40,7 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit() { 
      this.refreshDisplayComments( this.showMore );
+     if(typeof(this.comments)== "undefined") this.comments = [];
   }
 
   onCommentDeleted($event){

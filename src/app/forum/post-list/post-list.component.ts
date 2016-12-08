@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Post } from '../../services/philgo-api/v2/post';
+import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
+import { PostCreateComponent } from '../post-create/post-create.component';
 import { MemberService } from '../../services/philgo-api/v2/member';
 import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../../services/philgo-api/v2/philgo-api-interface';
 import { SessionService } from '../../services/session.service';
 import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -16,14 +19,18 @@ import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
 export class PostListComponent implements OnInit {
   showComments = "";
   postId : string;
-  posts =  <POSTS>{};
+  data =  <POSTS>{};
   isEdit = "";
+  deletedPost = "";
+  
   constructor(
     private post: Post,
     private member : MemberService,
     private route : ActivatedRoute,
     private router : Router,
-    private session : SessionService
+    private session : SessionService,
+    private modalService: NgbModal,
+
     ) {
           this.session.setBackRoute("forums/");
           this.postId = localStorage.getItem('forums_postID'); 
@@ -34,44 +41,29 @@ export class PostListComponent implements OnInit {
   }
 
 
-
   onClickAddPost(){
-    this.router.navigate(['/forums/post']);
-    localStorage.setItem("forums_postIDX", '');
-    this.session.setBackRoute('forums/posts');
+     let modalRef = this.modalService.open(PostCreateComponent);
+         modalRef.componentInstance.member_id = this.session.login.id;
+
+         modalRef.componentInstance.postAdded.subscribe(post => {
+                       this.data.posts.unshift(post);        
+                  });
   }
+
 
   onClickEdit(idx){
      this.router.navigate(['/forums/post']);   
      localStorage.setItem("forums_postIDX", idx);
   }
 
-  onClickDeletePost(idx){
-     if(confirm("Are you sure to delete this Post"))
-     {
-        this.post.delete(idx, response =>{
-            console.log("Success delete post" + response);
-            this.loadPosts(this.postId);
-            
-        }, error =>{
-            console.log("Error on deleting post" + error)
-        });
-     }
+  onPostDeleted($event){
+    let idx = $event;
+
+        _.remove( this.data.posts, post => {
+                return post.idx == idx;
+            } );
+
   }
-
-  onCommentAdded($event){
-    console.log("From Post Parent Add Comment result: ",$event);
-    this.showComments = $event;
-    this.loadPosts(this.postId);
-  }
-
-  
-
-  edit(idx){
-    if(this.isEdit == idx) return "hasvalue"; 
-    return "";
-  }
-
 
   loadPosts(postID : string){
     let data = <PAGE_DATA>{
@@ -80,8 +72,8 @@ export class PostListComponent implements OnInit {
         limit: 10
     };
      this.post.page(data, response =>{
-        this.posts = response;
-        console.log("Post structured",this.posts);
+        this.data = response;
+        console.log("Post structured",this.data);
         
 
 
@@ -91,14 +83,5 @@ export class PostListComponent implements OnInit {
 
   }
 
-  onClickViewPost(postidx){
-      localStorage.setItem('forums_postIDX', postidx);
-      this.router.navigate(['/forums/postview'])
-  }
-
-
-    onCommentDeleted($event){
-        this.loadPosts(this.postId);   
-    }
   
 }

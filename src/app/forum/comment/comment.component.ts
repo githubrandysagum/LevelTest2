@@ -76,6 +76,8 @@ export class CommentComponent implements OnInit {
       console.log("response", re);
        this.deleted.emit(this.comment)
     }, error =>{
+      alert("Error on deleting" + error);
+      this.deleting = "";
       console.log("error", error);
     })
 

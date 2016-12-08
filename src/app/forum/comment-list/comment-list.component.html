@@ -1,22 +1,24 @@
-<strong class="text-primary">Comments </strong>
-<ul class="list-group" *ngIf= "commentsOnDisplay">
-    <li class="list-group-item"  *ngFor = "let comment of commentsOnDisplay">
-        <div *ngIf = "comment">           
-            <app-comment [comment] = "comment" (deleted)="onCommentDeleted($event)"></app-comment>               
-        </div>               
-    </li> 
-    <li class="list-group-item" >
-        <div class="form-group">
-            <div *ngIf = "comment_is_Higher_Than_Five" >
-                <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
-                <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
-            </div>
-            <span class="fa fa-user-circle-o" user-img></span>
-            &nbsp;<span *ngIf = "session" class="small"><strong>{{ session.login.id }}</strong></span>
-                 <input type="text" *ngIf="!creatingComment" class="form-control small" [(ngModel)] = "writeComment" (keydown)="onEnterWriteComment($event)" placeholder="Write comment...">
-           
-            <span *ngIf="creatingComment" class="small"> {{ writeComment }} ...</span>
+
+
+        <span class="small"><strong class="text-primary">Comments </strong></span><br>
+        <div *ngIf="commentsOnDisplay">
+            <div *ngFor = "let comment of commentsOnDisplay">
+                <div *ngIf = "comment">           
+                    <app-comment [comment] = "comment" (deleted)="onCommentDeleted($event)"></app-comment>               
+                </div> 
+            </div>  
+        <div>
+        <div *ngIf = "comment_is_Higher_Than_Five" >
+            <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
+            <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
         </div>
-    </li>
+        <span class="fa fa-user-circle-o" user-img></span>
+        <span *ngIf = "session" class="small"><strong>{{ session.login.id }}</strong></span>
+        <input type="text" *ngIf="!creatingComment" 
+                            class="form-control small" 
+                            [(ngModel)] = "writeComment" 
+                            (keydown)="onEnterWriteComment($event)" 
+                            placeholder="Write comment...">
+        
+        <span *ngIf="creatingComment" class="small"> {{ writeComment }} ...</span>           
     
-</ul>  

@@ -1,0 +1,29 @@
+    <div class="card">
+        <div class="card-header">
+            <img src="/assets/user.png" user-img  alt = "image" >  
+            <strong >{{ post.member.id | HTMLCHAR}}</strong>
+            <span class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></span>
+        </div>   
+
+        <div class="card-block">
+            <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
+            <p class="card-text" [innerHTML] = "post.content " ></p>
+        </div>
+        <ul class="list-group" >
+            <li class="list-group-item">
+                <a>Like</a> <a>Comments</a> <a>Share</a>
+            </li>
+            <li class="list-group-item"  >
+                <app-comment-list 
+                    [postId]= "post.post_id" 
+                    [idxParent] = "post.idx" 
+                    [comments] = "post.comments" 
+                    (commentDeleted)="onCommentDeleted($event)"
+                    (commentAdded)="onCommentAdded($event)">
+                </app-comment-list>      
+            </li>      
+         </ul>  
+      
+     </div> 
+     
+    

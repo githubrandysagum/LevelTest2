@@ -17,6 +17,7 @@ export class CommentModalComponent {
   subject = "";
   content = "";
   member_id = "";
+  updating = false;
 
 
   updateSave = new EventEmitter();
@@ -31,6 +32,7 @@ export class CommentModalComponent {
 
 
   onClickSave(){
+    this.updating = true;
         console.log("updateComment()");
         let comment = <POST_DATA> {};
             comment.idx = this.idx;
@@ -41,13 +43,13 @@ export class CommentModalComponent {
 
 
         this.postService.update( comment, data => {
-
+          this.updating = false;
             console.log("updateComment() success: ", data);     
             this.updateSave.emit(comment);
             this.modal.close();
 
         }, error => {
-
+          this.updating = false;            
             console.error("comment update error: " + error );
             alert( error );
 

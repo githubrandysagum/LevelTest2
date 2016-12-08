@@ -1,23 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
 import { Post, POST_DATA} from '../../services/philgo-api/v2/post';
 import { SessionService } from '../../services/session.service';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.sass']
+  styleUrls: ['./post-create.component.sass'],
+  inputs : ['post','member_id'],
+  outputs : ['postAdded']
 })
 export class PostCreateComponent implements OnInit {
   form = <POST_DATA>{};
+  member_id = "";
   postID : string;
   postIDX : string;
+
+  postAdded = new EventEmitter();
+
+
+  isProcessing = false;
   constructor( 
     private route : ActivatedRoute,
     private post : Post,
     private router : Router,
-    private session : SessionService
+    private session : SessionService,
+    private modal : NgbActiveModal,
+
      ) {
        this.postID = localStorage.getItem('forums_postID');
        this.postIDX = localStorage.getItem('forums_postIDX');
@@ -42,11 +53,16 @@ export class PostCreateComponent implements OnInit {
 
   onClickCreate(){
       this.form.post_id = this.postID;
+      this.isProcessing = true;
       this.post.create(this.form, response =>{
           console.log("Success Post", response);
-          this.router.navigate([this.session.backRoute]);
+          this.postAdded.emit(response.post);
+          this.modal.close();
+           this.isProcessing = false;
       }, error =>{
-          console.log("Error on : ", error);
+           this.isProcessing = false;
+          
+          alert("Error on : "+ error);
       })
 
   }

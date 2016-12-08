@@ -1,9 +1,34 @@
 
-<h2 *ngIf="!postIDX">Post</h2>
-<h2 *ngIf="postIDX">Post Update</h2>
-<label>Title</label>
-<input type = 'text' [(ngModel)] = "form.subject" class="form-control">
-<label>Message</label>
-<input type ="text" [(ngModel)]="form.content" class="form-control">
-<button *ngIf="!postIDX" (click)="onClickCreate()">Post</button>
-<button *ngIf="postIDX" (click)="onClickSaveChanges()">Save Changes</button>
+<div >
+  <div class="modal-header">
+     
+        <button type="button" class="close" aria-label="Close" (click)="onClickDismiss()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 *ngIf="!postIDX">Post</h2>
+        <h2 *ngIf="postIDX">Post Update</h2>
+        <h5 class="modal-title">
+        <span class="fa fa-user-circle-o" user-img></span>
+        <span class="text-primary">
+            {{ member_id }}
+        </span>
+        </h5>
+        
+  </div>
+  <div class="modal-body">
+     <div class="form-group">  
+        <label>Title</label>
+       <input type ="text" [(ngModel)]="form.subject" class="form-control">
+     </div>
+    <div class="form-group">  
+        <textarea [(ngModel)]="form.content" class="form-control"></textarea>
+               
+    </div>
+    
+  </div>
+  <div class="modal-footer" *ngIf="!isProcessing">
+      <button  (click)="onClickCreate()">Post</button>
+      <button  type="button" class="btn btn-secondary" (click)="onClickCancel()">Cancel</button>
+    
+  </div>
+</div>
