@@ -93,26 +93,12 @@ export class CommentListComponent implements OnInit {
 
   refreshDisplayComments( showmore ){
     let number = 5;
+
     if(typeof(this.comments) == "undefined") return;
     if(!this.comments.length) return;
     if(showmore) number = this.comments.length;
-
-     this.comment_is_Higher_Than_Five = this.comments.length > 5;
-
-     let no_of_comments = 5;
-     let temp = [];
-    
-      for(let counter = 0; counter < this.comments.length; counter ++  ){
-         
-        if((number-1) >= counter){
-             let comment = this.comments[counter];
-                temp.push(comment);
-        }
-                  
-      }
-
-      this.commentsOnDisplay = temp;
-      
+      this.comment_is_Higher_Than_Five = number > 5;
+      this.commentsOnDisplay = _.take(this.comments, number);
   }
 
   
