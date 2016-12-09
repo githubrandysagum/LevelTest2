@@ -44,7 +44,7 @@ checkUser(){
     if(this.session.login){
       this.isOwnByUser = this.session.login.id == this.post['member']['id'];
     }
-  }
+  } 
   },2000);
   
 }
