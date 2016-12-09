@@ -1,56 +1,79 @@
-    <div class="card">
-        <div class="card-header">Article</div>
-        <div class="card-block">
-            <img src="/assets/user.png" user-img  alt = "image" >  
-            <strong >{{ post.member.id | HTMLCHAR}}</strong>
-            <span *ngIf="isOwnByUser">
-                <span class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></span>
-                <span class="fa fa-edit" (click)="onClickEditPost(post.idx)"></span>
-            </span>
-            
-        </div>   
-
-        <div class="card-block">
-            
+    <article class="card ">
+        <header class="card-header ">
+            Article
+            <div class="btn-group"> 
+                <button type="button"  
+                        class="btn btn-secondary dropdown-toggle" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">
+                       
+                </button> 
+                         
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button">Action</button>
+                    <button class="dropdown-item" type="button">Another action</button>
+                    <button class="dropdown-item" type="button">Something else here</button>
+                </div>
+            </div>
+        </header>
+        <div class="card-block">       
+            <h6> 
+                <img src="/assets/user.png" user-img  alt = "image" > {{ post.member.id | HTMLCHAR}}
+                <span *ngIf="isOwnByUser">
+                    <a class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></a>
+                    <a class="fa fa-edit" (click)="onClickEditPost(post.idx)"></a>
+                </span>
+            </h6>     
+        </div>  
+        <div class="card-block">       
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
             <p  class="card-text" >{{post.content}}</p>
         </div>
         <ul class="list-group list-group-flush" >   
              <li class="list-group-item" *ngIf = "post.no_of_comment">
-                <span >{{post.no_of_comment}} </span><a class="small">Comments </a> &nbsp;
+                <a class="small">
+                    Comments 
+                    <span class="badge" >
+                        {{post.no_of_comment}} 
+                    </span>
+                </a>   
+                &nbsp;
             </li>      
             <li class="list-group-item" nowrap>
-                
                 <a class="fa fa-thumbs-o-up  small card-link"> Like </a> &nbsp;
                 <a class="fa fa-comments-o  small card-link" (click)="onClickShowComment()">Comments </a> &nbsp;
                 <a class="fa fa-share  small card-link" aria-hidden="true">Share</a> &nbsp;
             </li>
             <li class="list-group-item" *ngIf="post.comments" >
-                <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()"><strong >Comments </strong></span>
-                <span class="text-primary small" *ngIf="!post.no_of_comment"><strong >No comments </strong></span>
+                <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()">
+                    <strong >Comments </strong>
+                </span>
+                <span class="text-primary small" *ngIf="!post.no_of_comment">
+                    <strong >No comments </strong>
+                </span>
                 <br>
-           
-                    <app-comment-list  
-                        [show] = "showComments"                             
-                        [postId]= "post.post_id" 
-                        [idxParent] = "post.idx" 
-                        [comments] = "post.comments" 
-                        (commentDeleted)="onCommentDeleted($event)"
-                        >
-                    </app-comment-list> 
+                <app-comment-list  
+                    [show] = "showComments"                             
+                    [postId]= "post.post_id" 
+                    [idxParent] = "post.idx" 
+                    [comments] = "post.comments" 
+                    (commentDeleted)="onCommentDeleted($event)"
+                    >
+                </app-comment-list> 
                  
             </li>              
          </ul>  
-         <div class="card-footer text-muted">          
-                    <span class="fa fa-user-circle-o" user-img></span>
-                    <span class="small"><strong>{{ session.login.id}}</strong></span>
+         <footer class="card-footer">          
+                    <span  class="fa fa-user-circle-o" user-img></span>
+                    <span  class="small"><strong>{{ session.login.id}}</strong></span>
                     <input type="text" *ngIf="!creatingComment" 
-                                class="form-control small" 
-                                [(ngModel)] = "writeComment" 
-                                (keydown)="onEnterWriteComment($event)" 
-                                placeholder="Write comment...">          
-         </div>
+                           class="form-control small" 
+                           [(ngModel)] = "writeComment" 
+                           (keydown)="onEnterWriteComment($event)" 
+                           placeholder="Write comment...">          
+         </footer>
       
-     </div> 
+     </article> 
      
     

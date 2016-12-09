@@ -1,8 +1,8 @@
 
 <h2 class="text-primary">{{postId | HTMLCHAR }}</h2>
-
-    <button (click)="onClickAddPost()">Add post</button>
-
+    <div>
+        <button (click)="onClickAddPost()">Add post</button>
+    </div>
     <div *ngFor = "let post of data.posts" >  
         <app-post-view [post]="post" (deleted)="onPostDeleted($event)"></app-post-view>
         <br>
