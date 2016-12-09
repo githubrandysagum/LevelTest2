@@ -48,10 +48,8 @@ export class CommentListComponent implements OnInit {
                 return comment.idx == deleteComment.idx;
             } );
 
-     
-     this.refreshDisplayComments(this.showMore);
-
-        
+     this.commentDeleted.emit(this.comments)
+     this.refreshDisplayComments(this.showMore);    
   }
 
    
@@ -72,6 +70,8 @@ export class CommentListComponent implements OnInit {
             this.refreshDisplayComments( this.showMore );  
             this.creatingComment = false;
             this.writeComment = "";
+
+            this.commentAdded.emit(data);
 
         }, error => {
 

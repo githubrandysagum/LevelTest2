@@ -57,6 +57,10 @@ export class PostViewComponent  implements  AfterViewInit {
     })
   }
 
+
+onCommentDeleted($event){
+  this.post.no_of_comment--;
+}
  
 onEnterWriteComment($event){
      if(typeof(this.post['comments']) == "undefined") this.post['comments'] = [];
@@ -76,8 +80,10 @@ onEnterWriteComment($event){
             this.commentListChild.showMore = true;
             this.commentListChild.refreshDisplayComments(true);
            
+           
             this.creatingComment = false;
             this.writeComment = "";
+            this.post.no_of_comment++;
 
         }, error => {
            this.creatingComment = false;

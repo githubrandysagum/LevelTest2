@@ -10,15 +10,20 @@
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
             <p class="card-text" [innerHTML] = "post.content " ></p>
         </div>
-        <ul class="list-group" >         
+        <ul class="list-group" >   
+             <li class="list-group-item" *ngIf = "post.no_of_comment">
+                <span >{{post.no_of_comment}} </span><a class="small">Comments </a> &nbsp;
+            </li>      
             <li class="list-group-item">
                 
                 <a class="fa fa-thumbs-o-up  small"> Like </a> &nbsp;
-                <a class="fa fa-comments-o  small" (click)="onClickShowComment()">Comments <span class="tag tag-primary">{{post.no_of_comment}} </span></a> &nbsp;
+                <a class="fa fa-comments-o  small" (click)="onClickShowComment()">Comments </a> &nbsp;
                 <a class="fa fa-share  small" aria-hidden="true">Share</a> &nbsp;
             </li>
             <li class="list-group-item" *ngIf="post.comments" >
-                <span class="tag tag-default" (click)="onClickShowComment()"><strong >Comments </strong></span><br>
+                <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()"><strong >Comments </strong></span>
+                <span class="text-primary small" *ngIf="!post.no_of_comment"><strong >No comments </strong></span>
+                <br>
            
                     <app-comment-list  
                         [show] = "showComments"                             
@@ -26,7 +31,6 @@
                         [idxParent] = "post.idx" 
                         [comments] = "post.comments" 
                         (commentDeleted)="onCommentDeleted($event)"
-                        (commentAdded)="onCommentAdded($event)"      
                         >
                     </app-comment-list> 
                  
