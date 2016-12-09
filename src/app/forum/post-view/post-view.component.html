@@ -4,6 +4,8 @@
             <img src="/assets/user.png" user-img  alt = "image" >  
             <strong >{{ post.member.id | HTMLCHAR}}</strong>
             <span class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></span>
+            <span class="fa fa-edit" (click)="onClickEditPost(post.idx)"></span>
+            
         </div>   
 
         <div class="card-block">

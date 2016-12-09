@@ -5,8 +5,8 @@
         <button type="button" class="close" aria-label="Close" (click)="onClickDismiss()">
         <span aria-hidden="true">&times;</span>
         </button>
-        <h2 *ngIf="!postIDX">Post</h2>
-        <h2 *ngIf="postIDX">Post Update</h2>
+        <h4 *ngIf="!form.idx">Post</h4>
+        <h4 *ngIf="form.idx">Post update</h4>
         <h5 class="modal-title">
         <span class="fa fa-user-circle-o" user-img></span>
         <span class="text-primary">
@@ -27,8 +27,8 @@
     
   </div>
   <div class="modal-footer" *ngIf="!isProcessing">
-      <button  (click)="onClickCreate()">Post</button>
+      <button class="btn btn-primary" *ngIf="form.idx" (click)="onClickUpdate()">Update</button>
+      <button class="btn btn-primary" *ngIf="!form.idx" (click)="onClickCreate()">Post</button>
       <button  type="button" class="btn btn-secondary" (click)="onClickCancel()">Cancel</button>
-    
   </div>
 </div>

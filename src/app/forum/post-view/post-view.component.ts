@@ -4,6 +4,8 @@ import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
 import { SessionService } from '../../services/session.service';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { CommentListComponent } from '../comment-list/comment-list.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { PostCreateComponent } from '../post-create/post-create.component';
 
 @Component({
   selector: 'app-post-view',
@@ -28,6 +30,8 @@ export class PostViewComponent  implements  AfterViewInit {
     private postservice : Post,
     private session : SessionService,
     private router : Router,
+    private modalService: NgbModal,
+
    
   ) {
        this.session.setBackRoute("forums/posts");
@@ -37,6 +41,22 @@ export class PostViewComponent  implements  AfterViewInit {
     
   }
 
+ onClickEditPost(){
+     let modalRef = this.modalService.open(PostCreateComponent);
+         modalRef.componentInstance.member_id = this.session.login.id;
+         modalRef.componentInstance.form.idx = this.post.idx;
+         modalRef.componentInstance.form.content = this.post.content;
+         modalRef.componentInstance.form.post_id = this.post.post_id;
+         modalRef.componentInstance.form.subject = this.post.subject;
+         
+
+         modalRef.componentInstance.postUpdated.subscribe(post => {
+                        this.post.content = post.content;
+                        this.post.subject = post.subject;
+                  });
+  }
+
+
   onClickShowComment(){
 
     
@@ -44,10 +64,7 @@ export class PostViewComponent  implements  AfterViewInit {
     else this.showComments = true;
   }
 
-  onClickEditPost(){
-    this.router.navigate(['/forums/post']);
-    this.session.setBackRoute('forums/postview');
-  }
+  
 
   onClickDeletePost(idx){
     this.postservice.delete(idx, response=>{

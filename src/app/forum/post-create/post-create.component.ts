@@ -10,7 +10,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.sass'],
   inputs : ['post','member_id'],
-  outputs : ['postAdded']
+  outputs : ['postAdded','postUpdated']
 })
 export class PostCreateComponent implements OnInit {
   form = <POST_DATA>{};
@@ -19,7 +19,7 @@ export class PostCreateComponent implements OnInit {
   postIDX : string;
 
   postAdded = new EventEmitter();
-
+  postUpdated= new EventEmitter();
 
   isProcessing = false;
   constructor( 
@@ -52,7 +52,6 @@ export class PostCreateComponent implements OnInit {
 
 
   onClickCreate(){
-      this.form.post_id = this.postID;
       this.isProcessing = true;
       this.post.create(this.form, response =>{
           console.log("Success Post", response);
@@ -67,11 +66,16 @@ export class PostCreateComponent implements OnInit {
 
   }
 
-  onClickSaveChanges(){
+ onClickUpdate(){
+      this.isProcessing = true;
+   
      this.post.update(this.form, response=>{
+      this.isProcessing = false;
          console.log("Successful update: ",response);
-         this.router.navigate([this.session.backRoute]);
+         this.postUpdated.emit(this.form);
+          this.modal.close();
      }, error =>{
+      this.isProcessing = false;
         alert("Error on update"+ error);
      });
 
