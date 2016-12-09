@@ -20,9 +20,9 @@ export class PostViewComponent  implements  AfterViewInit {
  creatingComment = false;
   post : POST_DATA;
   deleted = new EventEmitter();
- showComments = false;
- writeComment = "";
-
+  showComments = false;
+  writeComment = "";
+  isOwnByUser = false;
 @ViewChild(CommentListComponent)
   private commentListChild : CommentListComponent;
 
@@ -34,11 +34,21 @@ export class PostViewComponent  implements  AfterViewInit {
 
    
   ) {
-       this.session.setBackRoute("forums/posts");
+      this.checkUser();
    }
 
+checkUser(){
+
+  setTimeout(()=>{
+    if(this.session){
+    if(this.session.login){
+      this.isOwnByUser = this.session.login.id == this.post['member']['id'];
+    }
+  }
+  },2000);
+  
+}
   ngAfterViewInit() {
-    
   }
 
  onClickEditPost(){
