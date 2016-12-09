@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Post } from '../../services/philgo-api/v2/post';
+import {Post } from '../../../services/philgo-api/v2/post';
 import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
-import { PostCreateComponent } from '../post-create/post-create.component';
-import { MemberService } from '../../services/philgo-api/v2/member';
-import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../../services/philgo-api/v2/philgo-api-interface';
-import { SessionService } from '../../services/session.service';
-import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
+import { PostCreateComponent } from '../components/post-create/post-create.component';
+import { MemberService } from '../../../services/philgo-api/v2/member';
+import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE } from '../../../services/philgo-api/v2/philgo-api-interface';
+import { SessionService } from '../../../services/session.service';
+import { HTMLCHARPipe } from '../../../pipes/htmlchar.pipe';
 import * as _ from 'lodash';
 
 

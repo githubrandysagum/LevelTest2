@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService} from '../services/session.service';
-import { MemberService } from '../services/philgo-api/v2/member';
+import { SessionService} from '../../../services/session.service';
+import { MemberService } from '../../../services/philgo-api/v2/member';
 import { Router } from '@angular/router';
 
 @Component({

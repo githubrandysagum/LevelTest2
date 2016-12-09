@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MemberService, MEMBER_LOGIN_DATA } from '../services/philgo-api/v2/member';
-import { SessionService } from '../services/session.service';
+import { MemberService, MEMBER_LOGIN_DATA } from '../../../services/philgo-api/v2/member';
+import { SessionService } from '../../../services/session.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

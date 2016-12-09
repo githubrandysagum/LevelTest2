@@ -1,8 +1,8 @@
 import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
-import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
-import { SessionService } from '../../services/session.service';
+import { Post , POST_DATA, PAGE_DATA} from '../../../../services/philgo-api/v2/post';
+import { HTMLCHARPipe } from '../../../../pipes/htmlchar.pipe';
+import { SessionService } from '../../../../services/session.service';
 import * as _ from 'lodash';
 
 

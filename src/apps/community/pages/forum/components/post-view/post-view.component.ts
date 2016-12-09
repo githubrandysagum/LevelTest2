@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
-import { SessionService } from '../../services/session.service';
+import { Post , POST_DATA, PAGE_DATA} from '../../../../services/philgo-api/v2/post';
+import { SessionService } from '../../../../services/session.service';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { CommentListComponent } from '../comment-list/comment-list.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';

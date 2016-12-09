@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
-import { Post, POST_DATA} from '../../services/philgo-api/v2/post';
-import { SessionService } from '../../services/session.service';
+import { Post, POST_DATA} from '../../../../services/philgo-api/v2/post';
+import { SessionService } from '../../../../services/session.service';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 

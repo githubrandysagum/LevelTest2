@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../../services/philgo-api/v2/post';
-import { MemberService } from '../../services/philgo-api/v2/member';
-import { SessionService } from '../../services/session.service';
+import { Post } from '../../../services/philgo-api/v2/post';
+import { MemberService } from '../../../services/philgo-api/v2/member';
+import { SessionService } from '../../../services/session.service';
 import { Router } from '@angular/router';
 
 type FORUMS = Array< { name: Array<string>} >;

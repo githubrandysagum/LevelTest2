@@ -1,5 +1,5 @@
 import {Component, Input, EventEmitter} from '@angular/core';
-import { Post, POST_DATA } from '../../../services/philgo-api/v2/post';
+import { Post, POST_DATA } from '../../../../services/philgo-api/v2/post';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

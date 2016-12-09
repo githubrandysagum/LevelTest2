@@ -1,9 +1,9 @@
 import { Component, OnInit, Input , Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import { Post , POST_DATA, PAGE_DATA} from '../../services/philgo-api/v2/post';
-import { HTMLCHARPipe } from '../../pipes/htmlchar.pipe';
-import { CommentModalComponent } from '../components/comment-modal/comment-modal.component';
-import { SessionService } from '../../services/session.service';
+import { Post , POST_DATA, PAGE_DATA} from '../../../../services/philgo-api/v2/post';
+import { HTMLCHARPipe } from '../../../../pipes/htmlchar.pipe';
+import { CommentModalComponent } from '../../components/comment-modal/comment-modal.component';
+import { SessionService } from '../../../../services/session.service';
 
 @Component({
   selector: 'app-comment',
