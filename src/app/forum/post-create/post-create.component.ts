@@ -51,6 +51,8 @@ export class PostCreateComponent implements OnInit {
   }
 
 
+  
+
   onClickCreate(){
       this.isProcessing = true;
       this.post.create(this.form, response =>{

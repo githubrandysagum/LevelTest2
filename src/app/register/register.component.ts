@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         console.log("Success Update", response);
         alert('Update Success!')
       }, error =>{
-        alert("Server says" + error);
+        this.userAlert = "Philgo says: " + error; 
         console.log("Server says" + error);
       })
 
@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
        
     }, error =>{
       this.loading = false;
-      alert(error);
+      this.userAlert = "Philgo says: " + error; 
     })
   }
 

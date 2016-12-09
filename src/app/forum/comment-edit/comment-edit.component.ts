@@ -28,13 +28,6 @@ export class CommentEditComponent implements OnInit {
 
   }
 
-  
-
-  
-
- 
-  
-
    open(content) {
         this.modalService.open(content).result.then((result) => {
           if(result == "save"){
@@ -43,11 +36,13 @@ export class CommentEditComponent implements OnInit {
               this.edited.emit('data saved');
            });
           }
-
       }, (reason) => {
         alert('Error modal close! changes not save'+ reason);
       });
     }
+
+
+
 
    private getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
@@ -58,6 +53,9 @@ export class CommentEditComponent implements OnInit {
         return  `with: ${reason}`;
       }
     }
+
+
+    
 
  
    private updateComment( idx, data, success) {

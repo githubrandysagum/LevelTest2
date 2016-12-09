@@ -43,19 +43,20 @@ export class CommentModalComponent {
 
 
         this.postService.update( comment, data => {
-          this.updating = false;
+
+            this.updating = false;
             console.log("updateComment() success: ", data);     
             this.updateSave.emit(comment);
             this.modal.close();
 
         }, error => {
-          this.updating = false;            
+            this.updating = false;            
             console.error("comment update error: " + error );
             alert( error );
-
-
         })
   }
+
+
 
   onClickCancel(){
     this.modal.close('Close');

@@ -26,13 +26,18 @@ export class CommentComponent implements OnInit {
     private session : SessionService
   ) {
 
-   
 
   }
+
+
+
 
   ngOnInit() { 
      this.checkUser();
   }
+
+
+
 
   checkUser(){
     if(this.session.login && this.comment){
@@ -41,10 +46,12 @@ export class CommentComponent implements OnInit {
          // console.log(this.comment['member']['id']);
           this.isOwnByUser = true;
         }
-
     }
 
   }
+
+
+
 
   onClickEdit(){
     console.log('Editing this comment:', this.comment)
@@ -67,6 +74,8 @@ export class CommentComponent implements OnInit {
                   });
 
   }
+
+
 
   onClickDelete(){
      if(!confirm("Are you sure?")) return;

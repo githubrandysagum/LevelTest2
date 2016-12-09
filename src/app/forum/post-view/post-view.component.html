@@ -11,18 +11,19 @@
         </div>   
 
         <div class="card-block">
+            
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
-            <p class="card-text" [innerHTML] = "post.content " ></p>
+            <p  class="card-text" >{{post.content}}</p>
         </div>
-        <ul class="list-group" >   
+        <ul class="list-group list-group-flush" >   
              <li class="list-group-item" *ngIf = "post.no_of_comment">
                 <span >{{post.no_of_comment}} </span><a class="small">Comments </a> &nbsp;
             </li>      
-            <li class="list-group-item">
+            <li class="list-group-item" nowrap>
                 
-                <a class="fa fa-thumbs-o-up  small"> Like </a> &nbsp;
-                <a class="fa fa-comments-o  small" (click)="onClickShowComment()">Comments </a> &nbsp;
-                <a class="fa fa-share  small" aria-hidden="true">Share</a> &nbsp;
+                <a class="fa fa-thumbs-o-up  small card-link"> Like </a> &nbsp;
+                <a class="fa fa-comments-o  small card-link" (click)="onClickShowComment()">Comments </a> &nbsp;
+                <a class="fa fa-share  small card-link" aria-hidden="true">Share</a> &nbsp;
             </li>
             <li class="list-group-item" *ngIf="post.comments" >
                 <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()"><strong >Comments </strong></span>
@@ -38,21 +39,17 @@
                         >
                     </app-comment-list> 
                  
-            </li> 
-            <li class="list-group-item" >  
-                <div>
+            </li>              
+         </ul>  
+         <div class="card-footer text-muted">          
                     <span class="fa fa-user-circle-o" user-img></span>
                     <span class="small"><strong>{{ session.login.id}}</strong></span>
                     <input type="text" *ngIf="!creatingComment" 
                                 class="form-control small" 
                                 [(ngModel)] = "writeComment" 
                                 (keydown)="onEnterWriteComment($event)" 
-                                placeholder="Write comment...">
-                   
-                </div>
-               
-            </li>     
-         </ul>  
+                                placeholder="Write comment...">          
+         </div>
       
      </div> 
      

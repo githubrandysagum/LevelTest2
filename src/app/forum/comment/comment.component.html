@@ -7,7 +7,7 @@
     
       <br>
       &nbsp; &nbsp; &nbsp; &nbsp;
-      <span class="small" [innerHTML] = "comment['content']" ></span>
+      <span class="small" >{{comment['content']}}</span>
        &nbsp;
       <span class=" text-danger small" *ngIf = "deleting" >deleting...</span>
        <span *ngIf="isOwnByUser">   
