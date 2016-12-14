@@ -10,15 +10,19 @@ import { SessionService } from '../../../../services/session.service';
   templateUrl: 'comment.component.html',
   styleUrls: ['comment.component.scss'],
   inputs : [ 'comment'],
-  outputs : ['deleted']
+  outputs : ['deleted','commentReplied']
  
 })
 
 export class CommentComponent implements OnInit {
  comment = {};
  deleted = new EventEmitter();
+ commentReplied = new EventEmitter();
+ 
  deleting = "";
  isOwnByUser = false;
+ reply = false;
+ replyInput = "";
   constructor( 
     private modalService: NgbModal,
     private activeModal : NgbActiveModal,
@@ -37,8 +41,33 @@ export class CommentComponent implements OnInit {
   }
 
 
+  replyToggle(){
+    if(this.reply) this.reply = false;
+    else this.reply = true;
+  }
 
+  onEnterReply($event, idx_parent, post_id){
 
+      if(!($event.key == "Enter")) return;
+      
+    
+      let replyComment = <POST_DATA>{};
+          replyComment.post_id = post_id;
+          replyComment.idx_parent = idx_parent;
+          replyComment.subject = "reply";
+          replyComment.content = this.replyInput;
+
+          this.postService.createComment(replyComment, response =>{
+            this.replyInput = "";
+             this.commentReplied.emit(response.post);
+            console.log("Reply response : ", response);
+           
+          }, error=>{
+             alert('Reply Error');
+             console.log("Error on reply : ", error);
+          });
+
+  }
   checkUser(){
     if(this.session.login && this.comment){
      

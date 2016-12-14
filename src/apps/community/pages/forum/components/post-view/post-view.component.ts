@@ -101,8 +101,8 @@ onEnterWriteComment($event){
         this.postservice.createComment( c, data => {   
 
             console.log("Response",data);
-           
-            this.post['comments'].push(data.post); 
+            this.post['comments'].unshift(data.post); 
+            console.log("This is the unshifted comment : ",this.post['comments'][0])
             this.showComments = true;
             this.commentListChild.showMore = true;
             this.commentListChild.refreshDisplayComments(true);

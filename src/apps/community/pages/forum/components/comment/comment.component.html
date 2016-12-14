@@ -10,15 +10,24 @@
       <span class="small" >{{comment['content']}}</span>
        &nbsp;
       <span class=" text-danger small" *ngIf = "deleting" >deleting...</span>
-       <span *ngIf="isOwnByUser">   
-            <br>    
-             &nbsp; &nbsp; &nbsp; &nbsp;   
+       <br> 
+       &nbsp; &nbsp; &nbsp; &nbsp;  
+      
+       <span *ngIf="isOwnByUser">        
             <span class="fa fa-pencil-square-o text-primary" *ngIf = "!deleting"  (click)="onClickEdit()"></span>  
             <span class="fa fa-trash" *ngIf = "!deleting" (click)="onClickDelete()"></span>
       </span>
-    
-     
-     
+      <span class="fa fa-thumbs-o-up  small card-link"> Like </span> 
+      <span class="small  fa fa-reply small card-link"  aria-hidden="true" (click)="replyToggle()"> Reply</span>
+      &nbsp; &nbsp; &nbsp; &nbsp; 
+     <span class="offset-md-1 col-md-11">
+      <input type = "text" 
+                  class="form-control" 
+                  *ngIf="reply" 
+                  placeholder="Comment here" 
+                  [(ngModel)]="replyInput" 
+                  (keyup)="onEnterReply( $event, comment['idx'], comment['post_id'] )">
+      </span>
 </div>
 
 

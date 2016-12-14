@@ -52,6 +52,18 @@ export class CommentListComponent implements OnInit {
      this.refreshDisplayComments(this.showMore);    
   }
 
+  onCommentReplied($event){
+
+   
+    let repliedComment = $event;
+    let index =  _.findIndex( this.comments, comment =>{
+            return comment.idx == repliedComment.idx_parent;
+      } );
+
+      this.comments.splice(index + 1, 0,  repliedComment);
+       this.refreshDisplayComments(this.showMore); 
+  }
+
    
   onEnterWriteComment($event){
    
@@ -65,7 +77,8 @@ export class CommentListComponent implements OnInit {
         this.postService.createComment( c, data => {   
 
             console.log("Response",data);
-            this.comments.push(data.post); 
+            this.comments.unshift(data.post); 
+            console.log("This is the unshifted comment : ",this.comments[0])
             this.showMore = true;
             this.refreshDisplayComments( this.showMore );  
             this.creatingComment = false;

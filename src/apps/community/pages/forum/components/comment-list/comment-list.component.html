@@ -1,10 +1,15 @@
 
-<div *ngIf="show">
+<div *ngIf="show" >
      
             <div *ngIf="commentsOnDisplay">
                 <div *ngFor = "let comment of commentsOnDisplay">
-                    <div *ngIf = "comment">           
-                        <app-comment [comment] = "comment" (deleted)="onCommentDeleted($event)"></app-comment>               
+                    <div *ngIf = "comment"  >           
+                        <app-comment line  
+                                    class="offset-md-{{comment['depth']}} col-md-{{12-comment['depth']}}"
+                                    [comment] = "comment" 
+                                    (deleted)="onCommentDeleted($event)"
+                                    (commentReplied) = "onCommentReplied($event)">
+                         </app-comment>               
                     </div> 
                 </div>  
             <div>

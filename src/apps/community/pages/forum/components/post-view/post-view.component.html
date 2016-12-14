@@ -45,24 +45,7 @@
                 <a class="fa fa-comments-o  small card-link" (click)="onClickShowComment()">Comments </a> &nbsp;
                 <a class="fa fa-share  small card-link" aria-hidden="true">Share</a> &nbsp;
             </li>
-            <li class="list-group-item" *ngIf="post.comments" >
-                <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()">
-                    <strong >Comments </strong>
-                </span>
-                <span class="text-primary small" *ngIf="!post.no_of_comment">
-                    <strong >No comments </strong>
-                </span>
-                <br>
-                <app-comment-list  
-                    [show] = "showComments"                             
-                    [postId]= "post.post_id" 
-                    [idxParent] = "post.idx" 
-                    [comments] = "post.comments" 
-                    (commentDeleted)="onCommentDeleted($event)"
-                    >
-                </app-comment-list> 
-                 
-            </li>              
+                       
          </ul>  
          <footer class="card-footer">          
                     <span  class="fa fa-user-circle-o" user-img></span>
@@ -75,5 +58,23 @@
          </footer>
       
      </article> 
+      <div class="list-group-item" *ngIf="post.comments" >
+                <span class="text-primary small" *ngIf="post.no_of_comment" (click)="onClickShowComment()">
+                    <strong >Comments </strong>
+                </span>
+                <span class="text-primary small" *ngIf="!post.no_of_comment">
+                    <strong >No comments </strong>
+                </span>
+              
+                <app-comment-list  class="row"
+                    [show] = "showComments"                             
+                    [postId]= "post.post_id" 
+                    [idxParent] = "post.idx" 
+                    [comments] = "post.comments" 
+                    (commentDeleted)="onCommentDeleted($event)"
+                    >
+                </app-comment-list> 
+                 
+            </div>  
      
     
