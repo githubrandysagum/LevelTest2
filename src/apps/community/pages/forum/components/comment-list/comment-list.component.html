@@ -1,29 +1,21 @@
 
 <div *ngIf="show" >
-     
-            <div *ngIf="commentsOnDisplay">
-                <div *ngFor = "let comment of commentsOnDisplay">
-                    <div *ngIf = "comment"  >           
-                        <app-comment line  
-                                    class="offset-md-{{comment['depth']}} col-md-{{12-comment['depth']}}"
-                                    [comment] = "comment" 
-                                    (deleted)="onCommentDeleted($event)"
-                                    (commentReplied) = "onCommentReplied($event)">
-                         </app-comment>               
-                    </div> 
-                </div>  
-            <div>
-            <div *ngIf = "comment_is_Higher_Than_Five" >
-                <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
-                <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
-            </div>
-       
+        <div *ngIf="commentsOnDisplay">
+            <div  *ngFor = "let comment of commentsOnDisplay">
+                <div *ngIf = "comment" line class="mycomment" [attr.depth]="comment['depth']">           
+                    <app-comment          
+                                [comment] = "comment" 
+                                (deleted)="onCommentDeleted($event)"
+                                (commentReplied) = "onCommentReplied($event)">
+                        </app-comment>               
+                </div> 
+            </div>  
+        <div>
+        <div *ngIf = "comment_is_Higher_Than_Five" >
+            <a class="small  text-danger" *ngIf = "!showMore" (click)="onClickShow()"><strong>Show more</strong></a>  
+            <a class="small  text-danger" *ngIf = "showMore" (click)="onClickShow()"><strong>Show less</strong></a>
+        </div>
 </div>
-        <!--<input type="text" *ngIf="!creatingComment" 
-                            class="form-control small" 
-                            [(ngModel)] = "writeComment" 
-                            (keydown)="onEnterWriteComment($event)" 
-                            placeholder="Write comment...">-->
-        
+       
               
     
