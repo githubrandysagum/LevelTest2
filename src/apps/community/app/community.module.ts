@@ -29,7 +29,7 @@ const links : Routes = [
   { path : 'login', component : LoginComponent },
   { path : 'register',   component : RegisterComponent },
   { path : 'forums', component : ForumsComponent},
-  { path : 'forums/posts', component : PostListComponent},
+  { path : 'forums/posts/:post_id', component : PostListComponent},
   { path : 'forums/post', component : PostCreateComponent},
   { path : 'forums/post', component : PostCreateComponent},
   { path : 'forums/postview', component : PostViewComponent},

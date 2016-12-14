@@ -1,31 +1,14 @@
     <article class="card ">
         <header class="card-header ">
-            Article
-            <div class="btn-group"> 
-                <button type="button"  
-                        class="btn btn-secondary dropdown-toggle" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" 
-                        aria-expanded="false">
-                       
-                </button> 
-                         
-                <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="button">Action</button>
-                    <button class="dropdown-item" type="button">Another action</button>
-                    <button class="dropdown-item" type="button">Something else here</button>
-                </div>
-            </div>
-        </header>
-        <div class="card-block">       
             <h6> 
                 <img src="/assets/user.png" user-img  alt = "image" > {{ post.member.id | HTMLCHAR}}
                 <span *ngIf="isOwnByUser">
                     <a class="fa fa-trash" (click)="onClickDeletePost(post.idx)"></a>
                     <a class="fa fa-edit" (click)="onClickEditPost(post.idx)"></a>
                 </span>
-            </h6>     
-        </div>  
+            </h6>  
+        </header>
+        
         <div class="card-block">       
             <strong class="card-title" >{{post.subject | HTMLCHAR}}</strong><br> 
             <p  class="card-text" >{{post.content}}</p>

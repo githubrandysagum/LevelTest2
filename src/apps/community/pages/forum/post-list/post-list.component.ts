@@ -32,9 +32,12 @@ export class PostListComponent implements OnInit {
     private modalService: NgbModal,
 
     ) {
-          this.session.setBackRoute("forums/");
-          this.postId = localStorage.getItem('forums_postID'); 
-          this.loadPosts(this.postId);
+          this.route.params.subscribe( param =>{
+            this.postId = param['post_id'];
+             this.loadPosts(this.postId);
+          })
+
+         
      }
 
   ngOnInit() {
@@ -44,7 +47,7 @@ export class PostListComponent implements OnInit {
   onClickAddPost(){
      let modalRef = this.modalService.open(PostCreateComponent);
          modalRef.componentInstance.member_id = this.session.login.id;
-
+         modalRef.componentInstance.form.post_id =  this.postId;
          modalRef.componentInstance.postAdded.subscribe(post => {
                        this.data.posts.unshift(post);        
                   });
